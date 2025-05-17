@@ -1,10 +1,98 @@
 
-import React from 'react';
+import React, { useEffect, useMemo, useState, useCallback } from 'react';
+import Particles, { initParticlesEngine } from "@tsparticles/react";
+import { type Container, type ISourceOptions } from "@tsparticles/engine";
+import { loadSlim } from "tsparticles-slim";
 
 const HeroSection = () => {
+  const [isClient, setIsClient] = useState(false);
+  const [init, setInit] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true); // Ensures this runs client-side
+    initParticlesEngine(async (engine) => {
+      await loadSlim(engine); // Loads the slim version of tsparticles
+    }).then(() => {
+      setInit(true);
+    });
+  }, []);
+
+  const particlesLoaded = useCallback(async (container?: Container) => {
+    // You can add any logic here once particles are loaded, if needed
+    // console.log('Particles loaded:', container);
+  }, []);
+
+  const particlesOptions: ISourceOptions = useMemo(
+    () => ({
+      fpsLimit: 60,
+      interactivity: {
+        events: {
+          onHover: {
+            enable: true,
+            mode: "repel", // Particles will move away from the mouse
+          },
+          onClick: {
+            enable: true,
+            mode: "push", // Adds a few particles on click
+          },
+        },
+        modes: {
+          repel: { distance: 100, duration: 0.4 },
+          push: { quantity: 2 },
+        },
+      },
+      particles: {
+        color: { value: "#ffffff" },
+        links: {
+          color: "#ffffff",
+          distance: 150,
+          enable: true,
+          opacity: 0.4,
+          width: 1,
+        },
+        move: {
+          direction: "none",
+          enable: true,
+          outModes: { default: "bounce" }, // Particles bounce off screen edges
+          random: true,
+          speed: 1, // Slow movement speed
+          straight: false,
+        },
+        number: {
+          density: { enable: true, area: 800 },
+          value: 60, // Number of particles
+        },
+        opacity: { value: 0.4 },
+        shape: { type: "circle" },
+        size: { value: { min: 1, max: 3 } }, // Small particles
+      },
+      detectRetina: true,
+      background: {
+        color: {
+          value: 'transparent' // Important to show your existing gradient
+        }
+      }
+    }),
+    []
+  );
+
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center bg-gradient-to-br from-sky-600 to-indigo-700 text-white">
-      <div className="text-center animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+    <section 
+      id="home" 
+      className="min-h-screen flex items-center justify-center bg-gradient-to-br from-sky-600 to-indigo-700 text-white relative overflow-hidden"
+    >
+      {isClient && init && (
+        <Particles
+          id="tsparticles"
+          particlesLoaded={particlesLoaded}
+          options={particlesOptions}
+          className="absolute top-0 left-0 w-full h-full z-0" // Styles to ensure it's a background layer
+        />
+      )}
+      <div 
+        className="text-center animate-fade-in-up relative z-10" // Ensures content is above particles
+        style={{ animationDelay: '0.2s' }}
+      >
         <h1 className="text-5xl md:text-7xl font-extrabold mb-4">
           Hello, I'm{' '}
           <span 
