@@ -6,7 +6,12 @@ const HeroSection = () => {
     <section id="home" className="min-h-screen flex items-center justify-center bg-gradient-to-br from-sky-600 to-indigo-700 text-white">
       <div className="text-center animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
         <h1 className="text-5xl md:text-7xl font-extrabold mb-4">
-          Hello, I'm <span className="text-sky-300">Ahmed Mubarak</span>
+          Hello, I'm{' '}
+          <span 
+            className="inline-block text-sky-300 overflow-hidden whitespace-nowrap border-r-[0.15em] border-r-transparent animate-typing-name align-bottom"
+          >
+            Ahmed Mubarak
+          </span>
         </h1>
         <p className="text-2xl md:text-3xl font-medium mb-8">
           Full Stack Developer
@@ -16,7 +21,7 @@ const HeroSection = () => {
         </p>
         <a
           href="#projects"
-          className="bg-white text-sky-600 font-semibold px-8 py-3 rounded-lg shadow-lg hover:bg-sky-100 transition-colors duration-300 text-lg"
+          className="bg-white text-sky-600 font-semibold px-8 py-3 rounded-lg shadow-lg hover:bg-sky-100 transition-all duration-300 text-lg hover:scale-105 transform"
         >
           View My Work
         </a>

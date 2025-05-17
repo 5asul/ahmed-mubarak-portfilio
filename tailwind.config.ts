@@ -98,12 +98,22 @@ export default {
             opacity: '1',
             transform: 'translateY(0)'
           },
-        }
+        },
+        'typing-text-reveal': {
+          '0%': { width: '0ch', opacity: '0' }, // Start with 0 characters width and invisible
+          '1%': { opacity: '1'}, // Become visible quickly
+          '100%': { width: '13ch' }, // "Ahmed Mubarak" is 13 characters
+        },
+        'blink-cursor': {
+          '0%, 100%': { borderColor: 'transparent' },
+          '50%': { borderColor: 'currentColor' }, // Uses the text color for the cursor
+        },
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
         'fade-in-up': 'fade-in-up 0.5s ease-out forwards',
+        'typing-name': 'typing-text-reveal 2s steps(13, end) 0.7s forwards, blink-cursor 0.75s step-end infinite 0.7s',
 			}
 		}
 	},
