@@ -2,7 +2,8 @@
 import React, { useEffect, useMemo, useState, useCallback } from 'react';
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { type Container, type ISourceOptions } from "@tsparticles/engine";
-import { loadSlim } from "tsparticles-slim";
+// Updated import from "tsparticles-slim" to "@tsparticles/slim"
+import { loadSlim } from "@tsparticles/slim"; 
 
 const HeroSection = () => {
   const [isClient, setIsClient] = useState(false);
@@ -11,7 +12,8 @@ const HeroSection = () => {
   useEffect(() => {
     setIsClient(true); // Ensures this runs client-side
     initParticlesEngine(async (engine) => {
-      await loadSlim(engine); // Loads the slim version of tsparticles
+      // Now loadSlim will be compatible with the v3 engine
+      await loadSlim(engine); 
     }).then(() => {
       setInit(true);
     });
@@ -119,3 +121,4 @@ const HeroSection = () => {
 };
 
 export default HeroSection;
+
