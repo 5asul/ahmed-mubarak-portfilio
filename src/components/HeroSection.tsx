@@ -6,13 +6,13 @@ const HeroSection = () => {
     <section id="home" className="min-h-screen flex items-center justify-center bg-gradient-to-br from-sky-600 to-indigo-700 text-white">
       <div className="text-center animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
         <h1 className="text-5xl md:text-7xl font-extrabold mb-4">
-          Hello, I'm <span className="text-sky-300">Your Name</span>
+          Hello, I'm <span className="text-sky-300">Ahmed Mubarak</span>
         </h1>
         <p className="text-2xl md:text-3xl font-medium mb-8">
           Full Stack Developer
         </p>
         <p className="text-lg md:text-xl mb-10 max-w-2xl mx-auto px-4">
-          I build modern, responsive, and scalable web applications using cutting-edge technologies.
+          I build modern, responsive, and scalable web applications using cutting-edge technologies, with a passion for AI and data-driven solutions.
         </p>
         <a
           href="#projects"

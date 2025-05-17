@@ -6,9 +6,9 @@ const Footer = () => {
   return (
     <footer className="bg-slate-900 text-slate-400 py-8 text-center">
       <div className="container mx-auto">
-        <p>&copy; {currentYear} Your Name. All rights reserved.</p>
+        <p>&copy; {currentYear} Ahmed Mubarak. All rights reserved.</p>
         <p className="text-sm mt-1">
-          Designed & Built by Your Name (with a little help from Lovable AI)
+          Designed & Built by Ahmed Mubarak (with a little help from Lovable AI)
         </p>
       </div>
     </footer>

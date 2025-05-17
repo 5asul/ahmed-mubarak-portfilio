@@ -1,32 +1,54 @@
 
 import React from 'react';
-import { Code, Database, Server, Wind } from 'lucide-react'; // Example icons
+import { Code, Database, Server, Wind, FileText, Image, Zap, BookOpen, Users, RotateCw, Cloud } from 'lucide-react'; // Added more icons
 
 const skillsData = [
-  { name: 'JavaScript (ES6+)', icon: <Code size={20} className="mr-2" /> },
-  { name: 'TypeScript', icon: <Code size={20} className="mr-2" /> },
-  { name: 'React & Next.js', icon: <Code size={20} className="mr-2" /> },
-  { name: 'Node.js & Express', icon: <Server size={20} className="mr-2" /> },
-  { name: 'Python & Django/Flask', icon: <Code size={20} className="mr-2" /> },
-  { name: 'SQL (PostgreSQL, MySQL)', icon: <Database size={20} className="mr-2" /> },
-  { name: 'NoSQL (MongoDB, Firebase)', icon: <Database size={20} className="mr-2" /> },
-  { name: 'HTML5 & CSS3', icon: <Code size={20} className="mr-2" /> },
-  { name: 'Tailwind CSS', icon: <Wind size={20} className="mr-2" /> },
-  { name: 'Git & GitHub', icon: <Code size={20} className="mr-2" /> },
-  { name: 'RESTful APIs & GraphQL', icon: <Server size={20} className="mr-2" /> },
-  { name: 'Docker & Kubernetes', icon: <Server size={20} className="mr-2" /> },
-  { name: 'AWS / Cloud Platforms', icon: <Server size={20} className="mr-2" /> },
+  // Programming Languages
+  { name: 'C#', icon: <Code size={20} className="mr-2" /> },
+  { name: 'Python', icon: <Code size={20} className="mr-2" /> },
+  { name: 'Dart', icon: <Code size={20} className="mr-2" /> },
+  { name: 'JavaScript', icon: <Code size={20} className="mr-2" /> },
+  // Database
+  { name: 'SQL Server', icon: <Database size={20} className="mr-2" /> },
+  { name: 'PostgreSQL', icon: <Database size={20} className="mr-2" /> },
+  { name: 'MySQL', icon: <Database size={20} className="mr-2" /> },
+  { name: 'Sqflite', icon: <Database size={20} className="mr-2" /> },
+  { name: 'MongoDB', icon: <Database size={20} className="mr-2" /> },
+  // Framework
+  { name: 'ASP.NET Core', icon: <Server size={20} className="mr-2" /> },
+  { name: 'Flask', icon: <Server size={20} className="mr-2" /> },
+  { name: 'Flutter', icon: <Code size={20} className="mr-2" /> }, // Using Code for Flutter as it's a UI toolkit
+  { name: 'Node.js', icon: <Server size={20} className="mr-2" /> },
+  { name: 'Langchain', icon: <Code size={20} className="mr-2" /> }, // AI/LLM framework
+  // Cloud
+  { name: 'Google Colab', icon: <Cloud size={20} className="mr-2" /> },
+  { name: 'Google Cloud', icon: <Cloud size={20} className="mr-2" /> },
+  { name: 'Jupyter', icon: <Code size={20} className="mr-2" /> }, // Environment
+  // Design
+  { name: 'Adobe XD', icon: <Image size={20} className="mr-2" /> },
+  { name: 'Figma', icon: <Image size={20} className="mr-2" /> },
+  { name: 'Photoshop', icon: <Image size={20} className="mr-2" /> },
+  { name: 'Illustrator', icon: <Image size={20} className="mr-2" /> },
+  // Microsoft Office
+  { name: 'Excel', icon: <FileText size={20} className="mr-2" /> },
+  { name: 'Word', icon: <FileText size={20} className="mr-2" /> },
+  { name: 'PowerPoint', icon: <FileText size={20} className="mr-2" /> },
+  // Core Skills
+  { name: 'Problem-Solving', icon: <Zap size={20} className="mr-2" /> },
+  { name: 'Analytical Thinking', icon: <BookOpen size={20} className="mr-2" /> },
+  { name: 'Team Collaboration', icon: <Users size={20} className="mr-2" /> },
+  { name: 'Adaptability', icon: <RotateCw size={20} className="mr-2" /> },
 ];
 
 const SkillsSection = () => {
   return (
     <section id="skills" className="bg-white">
-      <div className="container mx-auto">
+      <div className="container mx-auto animate-fade-in-up">
         <h2 className="section-title">My Skills</h2>
         <p className="section-subtitle">
-          I have experience with a wide range of technologies in the web development spectrum.
+          I have experience with a wide range of technologies and possess strong core skills for development.
         </p>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 max-w-5xl mx-auto">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 max-w-6xl mx-auto">
           {skillsData.map((skill) => (
             <div
               key={skill.name}
