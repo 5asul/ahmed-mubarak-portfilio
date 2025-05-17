@@ -27,7 +27,7 @@ const Navbar = () => {
       <div className="container mx-auto flex justify-between items-center px-4 sm:px-6 lg:px-8">
         <a href="#home" className={`text-2xl font-bold ${isScrolled ? 'text-slate-800' : 'text-white'}`}>
           <Code className="inline-block mr-2" size={28} />
-          Your Name
+          Ahmed Mubarak
         </a>
         <div className="hidden md:flex space-x-6">
           {navLinks.map((link) => (
