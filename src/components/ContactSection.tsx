@@ -32,10 +32,10 @@ const ContactSection = () => {
             <a href="mailto:ahmedabbad2@gmail.com" title="Email" className="text-slate-300 hover:text-sky-400 transition-colors">
               <Mail size={32} />
             </a>
-            <a href="https://www.linkedin.com/in/ahmedmubarak-8811b7281/" title="LinkedIn" target="_blank" rel="noopener noreferrer" className="text-slate-300 hover:text-sky-400 transition-colors">
+            <a href="https://www.linkedin.com/in/ahmed-mubarak-8811b7281" title="LinkedIn" target="_blank" rel="noopener noreferrer" className="text-slate-300 hover:text-sky-400 transition-colors">
               <Linkedin size={32} />
             </a>
-            <a href="#" target="_blank" rel="noopener noreferrer" title="GitHub (Update Link)" className="text-slate-300 hover:text-sky-400 transition-colors">
+            <a href="https://github.com/5asul" target="_blank" rel="noopener noreferrer" title="GitHub (Update Link)" className="text-slate-300 hover:text-sky-400 transition-colors">
               {/* Replace # with actual GitHub profile link when available */}
               <Github size={32} />
             </a>

@@ -8,7 +8,7 @@ const Footer = () => {
       <div className="container mx-auto">
         <p>&copy; {currentYear} Ahmed Mubarak. All rights reserved.</p>
         <p className="text-sm mt-1">
-          Designed & Built by Ahmed Mubarak (with a little help from Lovable AI)
+          Designed & Built by Ahmed Mubarak 
         </p>
       </div>
     </footer>
