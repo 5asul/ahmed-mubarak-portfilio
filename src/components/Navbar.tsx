@@ -49,8 +49,8 @@ const Navbar = () => {
             </a>
           ))}
           <a
-            href="/ahmed_mubarak_cv.pdf" // Placeholder CV path
-            download="Ahmed_Mubarak_CV.pdf"
+            href="/AHMED_MUBARAK_RESUME.pdf" // Placeholder CV path
+            download="AHMED_MUBARAK_RESUME.pdf"
             className={cvButtonClasses}
             aria-label="Download CV"
           >
