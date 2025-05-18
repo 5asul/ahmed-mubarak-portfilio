@@ -92,10 +92,10 @@ const HeroSection = () => {
         />
       )}
       <div 
-        className="text-center m-3 animate-fade-in-up relative z-10" // Ensures content is above particles
+        className="text-center m-3 animate-fade-in-up  relative z-10" // Ensures content is above particles
         style={{ animationDelay: '0.2s' }}
       >
-        <h1 className="text-5xl md:text-7xl font-extrabold mb-4">
+        <h1 className="text-3xl md:text-7xl font-extrabold mb-4">
           Hello, I'm{' '}
           <span 
             className="inline-block text-sky-300 overflow-hidden whitespace-nowrap border-r-[0.15em] border-r-transparent animate-typing-name align-bottom"
