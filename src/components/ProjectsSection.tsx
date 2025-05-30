@@ -84,7 +84,7 @@ const ProjectsSection = () => {
 
   const filteredProjects = allProjects.filter(project => {
     return activeTab === 'all' || project.category === activeTab;
-  });
+  }).slice(0, 3); // Limit to first 3 projects
 
   return (
     <section id="projects" className="bg-slate-100">
