@@ -41,7 +41,12 @@ const Navbar = () => {
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link to="/" className="flex-shrink-0 flex items-center">
-              <span className="text-2xl font-bold text-slate-800">Portfolio</span>
+              <div className="w-10 h-10 bg-gradient-to-r from-sky-500 to-blue-600 rounded-lg flex items-center justify-center mr-3">
+                <span className="text-white font-bold text-xl">A</span>
+              </div>
+              <span className="text-2xl font-bold bg-gradient-to-r from-sky-600 to-blue-600 bg-clip-text text-transparent">
+                Ahmed Portfolio
+              </span>
             </Link>
           </div>
 

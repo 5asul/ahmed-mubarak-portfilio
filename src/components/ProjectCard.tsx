@@ -1,84 +1,136 @@
 
 import React from 'react';
-import { Link, Github } from 'lucide-react';
+import { ExternalLink, Github } from 'lucide-react';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 
 interface ProjectCardProps {
   title: string;
   description: string;
-  imageUrl?: string;
+  image_url?: string;
   tags: string[];
   category?: string;
-  liveUrl?: string;
-  repoUrl?: string;
+  live_url?: string;
+  repo_url?: string;
 }
 
-const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, imageUrl, tags, category, liveUrl, repoUrl }) => {
+const ProjectCard: React.FC<ProjectCardProps> = ({ 
+  title, 
+  description, 
+  image_url, 
+  tags, 
+  category, 
+  live_url, 
+  repo_url 
+}) => {
   const getCategoryColor = (cat?: string) => {
     switch (cat) {
       case 'websites':
-        return 'bg-green-100 text-green-700';
+        return 'bg-green-100 text-green-700 border-green-200';
       case 'backend':
-        return 'bg-blue-100 text-blue-700';
+        return 'bg-blue-100 text-blue-700 border-blue-200';
       case 'mobile':
-        return 'bg-purple-100 text-purple-700';
+        return 'bg-purple-100 text-purple-700 border-purple-200';
       default:
-        return 'bg-gray-100 text-gray-700';
+        return 'bg-gray-100 text-gray-700 border-gray-200';
     }
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 flex flex-col">
-      {imageUrl && (
-        <img 
-          src={imageUrl || "https://via.placeholder.com/400x250/E0E7FF/4F46E5?text=Project+Image"} 
-          alt={title} 
-          className="w-full h-40 sm:h-48 md:h-56 object-cover" 
-        />
-      )}
-      <div className="p-4 sm:p-6 flex flex-col flex-grow">
-        <div className="flex items-start justify-between mb-3">
-          <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-slate-800 leading-tight">{title}</h3>
+    <Card className="group overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-0 shadow-lg">
+      {image_url && (
+        <div className="relative overflow-hidden h-48 bg-gradient-to-br from-slate-100 to-slate-200">
+          <img 
+            src={image_url} 
+            alt={title} 
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" 
+          />
           {category && (
-            <span className={`text-xs font-medium px-2 py-0.5 rounded-full flex-shrink-0 ml-2 ${getCategoryColor(category)}`}>
+            <div className={`absolute top-3 right-3 px-2 py-1 rounded-full text-xs font-medium border ${getCategoryColor(category)}`}>
               {category.charAt(0).toUpperCase() + category.slice(1)}
-            </span>
+            </div>
           )}
         </div>
-        <p className="text-slate-600 mb-4 text-sm leading-relaxed flex-grow line-clamp-3">{description}</p>
-        <div className="mb-4">
+      )}
+      
+      <CardHeader className="pb-3">
+        <div className="flex items-start justify-between">
+          <div className="flex-1">
+            <CardTitle className="text-xl font-bold text-slate-800 group-hover:text-sky-600 transition-colors">
+              {title}
+            </CardTitle>
+            {!image_url && category && (
+              <CardDescription className="mt-1">
+                <span className={`inline-block px-2 py-1 rounded-full text-xs font-medium border ${getCategoryColor(category)}`}>
+                  {category.charAt(0).toUpperCase() + category.slice(1)}
+                </span>
+              </CardDescription>
+            )}
+          </div>
+        </div>
+      </CardHeader>
+      
+      <CardContent className="space-y-4">
+        <p className="text-slate-600 leading-relaxed line-clamp-3">
+          {description}
+        </p>
+        
+        <div className="flex flex-wrap gap-1">
           {tags.slice(0, 4).map((tag) => (
-            <span key={tag} className="inline-block bg-sky-100 text-sky-700 text-xs font-medium mr-1 mb-1 px-2 py-0.5 rounded-full">
+            <span 
+              key={tag} 
+              className="inline-block bg-sky-50 text-sky-700 text-xs font-medium px-2 py-1 rounded-md border border-sky-100"
+            >
               {tag}
             </span>
           ))}
           {tags.length > 4 && (
-            <span className="inline-block text-slate-500 text-xs">+{tags.length - 4} more</span>
+            <span className="inline-block text-slate-500 text-xs px-2 py-1">
+              +{tags.length - 4} more
+            </span>
           )}
         </div>
-        <div className="mt-auto flex flex-col sm:flex-row gap-2 sm:gap-4">
-          {liveUrl && (
-            <a
-              href={liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sky-600 hover:text-sky-700 font-medium flex items-center justify-center sm:justify-start transition-colors text-sm"
+        
+        <div className="flex gap-2 pt-2">
+          {live_url && (
+            <Button
+              asChild
+              variant="default"
+              size="sm"
+              className="flex-1"
             >
-              <Link size={16} className="mr-1" /> Live Demo
-            </a>
+              <a
+                href={live_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-1"
+              >
+                <ExternalLink size={14} />
+                Live Demo
+              </a>
+            </Button>
           )}
-          {repoUrl && (
-            <a
-              href={repoUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-slate-600 hover:text-slate-800 font-medium flex items-center justify-center sm:justify-start transition-colors text-sm"
+          {repo_url && (
+            <Button
+              asChild
+              variant="outline"
+              size="sm"
+              className="flex-1"
             >
-              <Github size={16} className="mr-1" /> View Code
-            </a>
+              <a
+                href={repo_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-1"
+              >
+                <Github size={14} />
+                Code
+              </a>
+            </Button>
           )}
         </div>
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   );
 };
 
