@@ -1,10 +1,11 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import ProjectCard from './ProjectCard';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
-const featuredProjects = [
+const allProjects = [
   {
     title: 'HomeRush Home Services App',
     description: 'Designed a platform that connects service seekers (customers) with service providers (workers), enabling seamless booking, real-time communication, and secure payment options.',
@@ -32,18 +33,78 @@ const featuredProjects = [
     liveUrl: '#',
     repoUrl: '#',
   },
+  {
+    title: 'Adrenalin Mobile Exercise App',
+    description: 'Designed a mobile app using Flutter that employs AI to analyze user exercise patterns and provide customized workout routines, tracking user progress effectively.',
+    imageUrl: 'https://images.unsplash.com/photo-1579548122080-c3efd5075829?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60',
+    tags: ['PHP', 'Dart', 'Flutter', 'AI', 'Mobile App'],
+    category: 'mobile',
+    liveUrl: '#',
+    repoUrl: '#',
+  },
+  {
+    title: 'Dungeons Desktop Security Application',
+    description: 'Engineered a security-focused desktop application with encryption and real-time threat monitoring features to enhance cybersecurity measures.',
+    imageUrl: 'https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60',
+    tags: ['C#', 'Desktop App', 'Security', 'Encryption'],
+    category: 'backend',
+    liveUrl: '#',
+    repoUrl: '#',
+  },
+  {
+    title: 'Invitation Card Maker & QR Reader',
+    description: 'Developed an intuitive app for creating personalized invitations and integrating QR code functionality, streamlining user engagement.',
+    imageUrl: 'https://images.unsplash.com/photo-1522199755839-a2bacb67c546?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60',
+    tags: ['Dart', 'Mobile App', 'QR Code', 'Utility'],
+    category: 'mobile',
+    repoUrl: '#',
+  },
+  {
+    title: 'E-Commerce Website',
+    description: 'Built a full-featured e-commerce platform with React, featuring product catalog, shopping cart, and payment integration.',
+    imageUrl: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60',
+    tags: ['React', 'TypeScript', 'Tailwind CSS', 'Stripe'],
+    category: 'websites',
+    liveUrl: '#',
+    repoUrl: '#',
+  },
+  {
+    title: 'Portfolio Website',
+    description: 'Designed and developed a responsive portfolio website showcasing projects and skills with modern UI/UX design.',
+    imageUrl: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60',
+    tags: ['React', 'Vite', 'Tailwind CSS', 'Responsive'],
+    category: 'websites',
+    liveUrl: '#',
+    repoUrl: '#',
+  },
 ];
 
 const ProjectsSection = () => {
+  const [activeTab, setActiveTab] = useState('all');
+
+  const filteredProjects = allProjects.filter(project => {
+    return activeTab === 'all' || project.category === activeTab;
+  });
+
   return (
     <section id="projects" className="bg-slate-100">
       <div className="container mx-auto animate-fade-in-up">
         <h2 className="section-title">Featured Projects</h2>
         <p className="section-subtitle">
-          Here are some of my featured projects. Explore more to see my full portfolio.
+          Here are some of my featured projects. Explore different categories below.
         </p>
+
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="mb-8">
+          <TabsList className="grid grid-cols-4 w-full max-w-md mx-auto">
+            <TabsTrigger value="all">All</TabsTrigger>
+            <TabsTrigger value="websites">Websites</TabsTrigger>
+            <TabsTrigger value="backend">Backend</TabsTrigger>
+            <TabsTrigger value="mobile">Mobile</TabsTrigger>
+          </TabsList>
+        </Tabs>
+
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {featuredProjects.map((project, index) => (
+          {filteredProjects.map((project, index) => (
             <ProjectCard key={index} {...project} />
           ))}
         </div>
