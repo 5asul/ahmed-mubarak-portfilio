@@ -45,7 +45,7 @@ const Navbar = () => {
                 <span className="text-white font-bold text-xl">A</span>
               </div>
               <span className="text-2xl font-bold bg-gradient-to-r from-sky-600 to-blue-600 bg-clip-text text-transparent">
-                Ahmed Portfolio
+                Ahmed Mubarak
               </span>
             </Link>
           </div>
