@@ -44,12 +44,12 @@ const HeroSection = () => {
         },
       },
       particles: {
-        color: { value: "#ffffff" },
+        color: { value: "#0ea5e9" }, // sky-500 color that works in both themes
         links: {
-          color: "#ffffff",
+          color: "#0ea5e9",
           distance: 150,
           enable: true,
-          opacity: 0.4,
+          opacity: 0.3,
           width: 1,
         },
         move: {
@@ -81,7 +81,7 @@ const HeroSection = () => {
   return (
     <section 
       id="home" 
-      className="min-h-screen flex items-center justify-center bg-gradient-to-br from-sky-600 to-indigo-700 dark:from-sky-800 dark:to-indigo-900 text-white relative overflow-hidden transition-colors duration-300"
+      className="min-h-screen flex items-center justify-center bg-gradient-to-br from-sky-500/20 to-indigo-600/20 dark:from-sky-400/10 dark:to-indigo-500/10 bg-background text-foreground relative overflow-hidden transition-colors duration-300"
     >
       {isClient && init && (
         <Particles
@@ -92,26 +92,26 @@ const HeroSection = () => {
         />
       )}
       <div 
-        className="text-center m-3 animate-fade-in-up  relative z-10" // Ensures content is above particles
+        className="text-center m-3 animate-fade-in-up relative z-10" // Ensures content is above particles
         style={{ animationDelay: '0.2s' }}
       >
-        <h1 className="text-3xl md:text-7xl font-extrabold mb-4">
+        <h1 className="text-3xl md:text-7xl font-extrabold mb-4 text-foreground">
           Hello, I'm{' '}
           <span 
-            className="inline-block text-sky-300 dark:text-sky-200 overflow-hidden whitespace-nowrap border-r-[0.15em] border-r-transparent animate-typing-name align-bottom"
+            className="inline-block text-sky-500 dark:text-sky-400 overflow-hidden whitespace-nowrap border-r-[0.15em] border-r-transparent animate-typing-name align-bottom"
           >
             Ahmed Mubarak
           </span>
         </h1>
-        <p className="text-2xl md:text-3xl font-medium mb-8">
+        <p className="text-2xl md:text-3xl font-medium mb-8 text-muted-foreground">
           Full Stack Developer
         </p>
-        <p className="text-lg md:text-xl mb-10 max-w-2xl mx-auto px-4">
+        <p className="text-lg md:text-xl mb-10 max-w-2xl mx-auto px-4 text-muted-foreground">
           I build modern, responsive, and scalable web applications using cutting-edge technologies, with a passion for AI and data-driven solutions.
         </p>
         <a
           href="#projects"
-          className="bg-white text-sky-600 font-semibold px-8 py-3 rounded-lg shadow-lg hover:bg-sky-100 dark:bg-gray-100 dark:text-sky-700 dark:hover:bg-white transition-all duration-300 text-lg hover:scale-105 transform"
+          className="bg-sky-500 text-white dark:bg-sky-600 dark:text-white font-semibold px-8 py-3 rounded-lg shadow-lg hover:bg-sky-600 dark:hover:bg-sky-700 transition-all duration-300 text-lg hover:scale-105 transform"
         >
           View My Work
         </a>
