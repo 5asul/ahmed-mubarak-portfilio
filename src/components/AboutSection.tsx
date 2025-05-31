@@ -45,14 +45,14 @@ const AboutSection = () => {
   ];
 
   return (
-    <section id="about" className="bg-slate-50">
+    <section id="about" className="bg-muted/30 dark:bg-muted/10 transition-colors duration-300">
       <div className="container mx-auto animate-fade-in-up">
         <h2 className="section-title">About Me</h2>
-        <div className="max-w-4xl mx-auto text-slate-700 space-y-8">
+        <div className="max-w-4xl mx-auto text-foreground space-y-8">
           
           <div className="text-center">
             <p className="text-lg leading-relaxed">
-              Hi, I'm <span className="font-semibold text-sky-700">Ahmed Mubarak</span>.
+              Hi, I'm <span className="font-semibold text-sky-700 dark:text-sky-400">Ahmed Mubarak</span>.
             </p>
             <p className="text-lg leading-relaxed mt-4">
               As a passionate Information Technology graduate with expertise in artificial intelligence, full-stack
@@ -63,30 +63,30 @@ const AboutSection = () => {
           </div>
 
           <div>
-            <h3 className="text-2xl font-semibold text-slate-800 mb-4 text-center">Education</h3>
+            <h3 className="text-2xl font-semibold text-foreground mb-4 text-center">Education</h3>
             <div className="space-y-4">
-              <div className="p-4 bg-white rounded-lg shadow-sm">
-                <p className="font-semibold text-sky-700">Bachelor’s degree | College of Information Technology</p>
-                <p className="text-sm text-slate-600">Hadramout University, 2020-2024</p>
+              <div className="p-4 bg-card dark:bg-card rounded-lg shadow-sm border border-border">
+                <p className="font-semibold text-sky-700 dark:text-sky-400">Bachelor's degree | College of Information Technology</p>
+                <p className="text-sm text-muted-foreground">Hadramout University, 2020-2024</p>
               </div>
-              <div className="p-4 bg-white rounded-lg shadow-sm">
-                <p className="font-semibold text-sky-700">Diploma in English</p>
-                <p className="text-sm text-slate-600">Elec English Institute, Malaysia, 2019-2020</p>
+              <div className="p-4 bg-card dark:bg-card rounded-lg shadow-sm border border-border">
+                <p className="font-semibold text-sky-700 dark:text-sky-400">Diploma in English</p>
+                <p className="text-sm text-muted-foreground">Elec English Institute, Malaysia, 2019-2020</p>
               </div>
             </div>
           </div>
 
           <div>
-            <h3 className="text-2xl font-semibold text-slate-800 mb-6 text-center">Work Experience</h3>
+            <h3 className="text-2xl font-semibold text-foreground mb-6 text-center">Work Experience</h3>
             <div className="space-y-6">
               {workExperiences.map((exp, index) => (
-                <div key={index} className="p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                <div key={index} className="p-6 bg-card dark:bg-card rounded-lg shadow-md hover:shadow-lg transition-shadow border border-border">
                   <div className="flex justify-between items-start mb-2">
-                    <h4 className="text-xl font-semibold text-sky-700">{exp.role}</h4>
-                    <span className="text-sm text-slate-500 bg-sky-100 px-2 py-1 rounded">{exp.period}</span>
+                    <h4 className="text-xl font-semibold text-sky-700 dark:text-sky-400">{exp.role}</h4>
+                    <span className="text-sm text-muted-foreground bg-sky-100 dark:bg-sky-900/30 px-2 py-1 rounded">{exp.period}</span>
                   </div>
-                  <p className="text-md font-medium text-slate-800 mb-2">{exp.company}</p>
-                  <ul className="list-disc list-inside text-sm text-slate-600 space-y-1">
+                  <p className="text-md font-medium text-foreground mb-2">{exp.company}</p>
+                  <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
                     {exp.description.map((item, idx) => (
                       <li key={idx}>{item}</li>
                     ))}
@@ -97,46 +97,46 @@ const AboutSection = () => {
           </div>
 
           <div>
-            <h3 className="text-2xl font-semibold text-slate-800 mb-6 text-center">Professional Development & Certifications</h3>
+            <h3 className="text-2xl font-semibold text-foreground mb-6 text-center">Professional Development & Certifications</h3>
             <div className="grid md:grid-cols-2 gap-4">
               {professionalDevelopment.map((cert, index) => (
-                 <div key={index} className="flex items-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                  <Award size={24} className="text-sky-600 mr-3 flex-shrink-0" />
-                  <p className="text-sm text-slate-700">{cert}</p>
+                 <div key={index} className="flex items-center p-4 bg-card dark:bg-card rounded-lg shadow-sm hover:shadow-md transition-shadow border border-border">
+                  <Award size={24} className="text-sky-600 dark:text-sky-400 mr-3 flex-shrink-0" />
+                  <p className="text-sm text-foreground">{cert}</p>
                 </div>
               ))}
             </div>
           </div>
           
           <div>
-            <h3 className="text-2xl font-semibold text-slate-800 mb-4 text-center">Languages</h3>
+            <h3 className="text-2xl font-semibold text-foreground mb-4 text-center">Languages</h3>
             <div className="flex justify-center space-x-6">
-              <div className="flex items-center p-4 bg-white rounded-lg shadow-sm">
-                <LanguagesIcon size={24} className="text-sky-600 mr-2" />
-                <p className="text-slate-700">English: <span className="font-medium">Fluent</span></p>
+              <div className="flex items-center p-4 bg-card dark:bg-card rounded-lg shadow-sm border border-border">
+                <LanguagesIcon size={24} className="text-sky-600 dark:text-sky-400 mr-2" />
+                <p className="text-foreground">English: <span className="font-medium">Fluent</span></p>
               </div>
-              <div className="flex items-center p-4 bg-white rounded-lg shadow-sm">
-                <LanguagesIcon size={24} className="text-sky-600 mr-2" />
-                <p className="text-slate-700">Arabic: <span className="font-medium">Native</span></p>
+              <div className="flex items-center p-4 bg-card dark:bg-card rounded-lg shadow-sm border border-border">
+                <LanguagesIcon size={24} className="text-sky-600 dark:text-sky-400 mr-2" />
+                <p className="text-foreground">Arabic: <span className="font-medium">Native</span></p>
               </div>
             </div>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 pt-10">
-            <div className="flex flex-col items-center p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow">
-              <User size={48} className="text-sky-600 mb-3" />
-              <h3 className="text-xl font-semibold text-slate-800 mb-2">User-Focused</h3>
-              <p className="text-sm text-slate-600 text-center">Crafting intuitive and engaging user experiences is my top priority.</p>
+            <div className="flex flex-col items-center p-6 bg-card dark:bg-card rounded-lg shadow-md hover:shadow-lg transition-shadow border border-border">
+              <User size={48} className="text-sky-600 dark:text-sky-400 mb-3" />
+              <h3 className="text-xl font-semibold text-foreground mb-2">User-Focused</h3>
+              <p className="text-sm text-muted-foreground text-center">Crafting intuitive and engaging user experiences is my top priority.</p>
             </div>
-            <div className="flex flex-col items-center p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow">
-              <Brain size={48} className="text-sky-600 mb-3" /> {/* Replaced Briefcase with Brain for Problem Solver / Analytical */}
-              <h3 className="text-xl font-semibold text-slate-800 mb-2">Analytical Problem Solver</h3>
-              <p className="text-sm text-slate-600 text-center">I enjoy tackling complex challenges and finding innovative, analytical solutions.</p>
+            <div className="flex flex-col items-center p-6 bg-card dark:bg-card rounded-lg shadow-md hover:shadow-lg transition-shadow border border-border">
+              <Brain size={48} className="text-sky-600 dark:text-sky-400 mb-3" /> {/* Replaced Briefcase with Brain for Problem Solver / Analytical */}
+              <h3 className="text-xl font-semibold text-foreground mb-2">Analytical Problem Solver</h3>
+              <p className="text-sm text-muted-foreground text-center">I enjoy tackling complex challenges and finding innovative, analytical solutions.</p>
             </div>
-            <div className="flex flex-col items-center p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow">
-              <Zap size={48} className="text-sky-600 mb-3" />
-              <h3 className="text-xl font-semibold text-slate-800 mb-2">Performance Driven</h3>
-              <p className="text-sm text-slate-600 text-center">Building fast, scalable, and reliable applications.</p>
+            <div className="flex flex-col items-center p-6 bg-card dark:bg-card rounded-lg shadow-md hover:shadow-lg transition-shadow border border-border">
+              <Zap size={48} className="text-sky-600 dark:text-sky-400 mb-3" />
+              <h3 className="text-xl font-semibold text-foreground mb-2">Performance Driven</h3>
+              <p className="text-sm text-muted-foreground text-center">Building fast, scalable, and reliable applications.</p>
             </div>
           </div>
         </div>
