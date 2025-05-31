@@ -53,16 +53,16 @@ const ProjectsSection = () => {
 
   if (loading) {
     return (
-      <section id="projects" className="bg-slate-100">
+      <section id="projects" className="bg-muted/30 dark:bg-muted/10 transition-colors duration-300">
         <div className="container mx-auto animate-fade-in-up">
-          <div className="text-center py-12">Loading projects...</div>
+          <div className="text-center py-12 text-foreground">Loading projects...</div>
         </div>
       </section>
     );
   }
 
   return (
-    <section id="projects" className="bg-slate-100">
+    <section id="projects" className="bg-muted/30 dark:bg-muted/10 transition-colors duration-300">
       <div className="container mx-auto animate-fade-in-up">
         <div className="flex justify-between items-center mb-8">
           <div>
@@ -98,7 +98,7 @@ const ProjectsSection = () => {
             <div className="text-center">
               <Link
                 to="/all-projects"
-                className="inline-flex items-center bg-sky-600 text-white font-semibold px-8 py-3 rounded-lg shadow-lg hover:bg-sky-700 transition-all duration-300 text-lg hover:scale-105 transform"
+                className="inline-flex items-center bg-sky-600 hover:bg-sky-700 dark:bg-sky-500 dark:hover:bg-sky-600 text-white font-semibold px-8 py-3 rounded-lg shadow-lg transition-all duration-300 text-lg hover:scale-105 transform"
               >
                 View All Projects
                 <ArrowRight className="ml-2" size={20} />
@@ -107,7 +107,7 @@ const ProjectsSection = () => {
           </>
         ) : (
           <div className="text-center py-12">
-            <p className="text-slate-600 mb-4">No projects found.</p>
+            <p className="text-muted-foreground mb-4">No projects found.</p>
             {isAdmin && (
               <Link to="/admin">
                 <Button>Add Your First Project</Button>

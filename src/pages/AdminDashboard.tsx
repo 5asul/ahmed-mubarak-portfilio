@@ -15,8 +15,8 @@ const AdminDashboard = () => {
 
   if (!isAdmin) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-background via-background to-accent/10 flex items-center justify-center p-4 transition-colors duration-300">
-        <Card className="w-full max-w-md shadow-xl bg-card/50 backdrop-blur-sm border-border">
+      <div className="min-h-screen bg-background flex items-center justify-center p-4 transition-colors duration-300">
+        <Card className="w-full max-w-md shadow-xl bg-card/70 backdrop-blur-sm border-border">
           <CardHeader className="text-center pb-4">
             <div className="w-16 h-16 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
               <User className="w-8 h-8 text-red-600 dark:text-red-400" />
@@ -37,10 +37,10 @@ const AdminDashboard = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-accent/10 transition-colors duration-300">
+    <div className="min-h-screen bg-background transition-colors duration-300">
       <div className="container mx-auto px-4 py-8">
         {/* Header Section */}
-        <div className="bg-card/50 backdrop-blur-sm rounded-lg shadow-lg p-6 mb-8 border border-border">
+        <div className="bg-card/70 backdrop-blur-sm rounded-lg shadow-lg p-6 mb-8 border border-border">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <div className="flex items-center space-x-4">
               <Link 
@@ -109,7 +109,7 @@ const AdminDashboard = () => {
         </div>
 
         {/* Main Content Tabs */}
-        <Card className="shadow-xl bg-card/50 backdrop-blur-sm border-border">
+        <Card className="shadow-xl bg-card/70 backdrop-blur-sm border-border">
           <Tabs defaultValue="projects" className="w-full">
             <div className="border-b border-border bg-muted/30 rounded-t-lg">
               <TabsList className="grid w-full grid-cols-3 bg-transparent h-auto p-0">

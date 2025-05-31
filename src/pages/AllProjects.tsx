@@ -64,7 +64,7 @@ const AllProjects = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-background via-background to-accent/10 pt-20 transition-colors duration-300">
+      <div className="min-h-screen bg-background pt-20 transition-colors duration-300">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="text-center py-12">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-sky-600 dark:border-sky-400 mx-auto"></div>
@@ -76,10 +76,10 @@ const AllProjects = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-accent/10 pt-20 transition-colors duration-300">
+    <div className="min-h-screen bg-background pt-20 transition-colors duration-300">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Header Section */}
-        <Card className="p-8 mb-8 shadow-lg border-border bg-card/50 backdrop-blur-sm">
+        <Card className="p-8 mb-8 shadow-lg border-border bg-card/70 backdrop-blur-sm">
           <Link 
             to="/" 
             className="inline-flex items-center text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 mb-6 transition-colors group"
@@ -116,7 +116,7 @@ const AllProjects = () => {
             <TabsList className="grid grid-cols-4 w-full max-w-2xl mx-auto bg-muted/50 backdrop-blur-sm">
               <TabsTrigger value="all" className="flex items-center gap-2">
                 All
-                <span className="bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs px-2 py-0.5 rounded-full">
+                <span className="bg-muted-foreground/20 text-foreground text-xs px-2 py-0.5 rounded-full">
                   {getCategoryCount('all')}
                 </span>
               </TabsTrigger>
@@ -159,7 +159,7 @@ const AllProjects = () => {
             ))}
           </div>
         ) : (
-          <Card className="p-12 text-center shadow-lg bg-card/50 backdrop-blur-sm border-border">
+          <Card className="p-12 text-center shadow-lg bg-card/70 backdrop-blur-sm border-border">
             <Filter className="w-16 h-16 text-muted-foreground/50 mx-auto mb-4" />
             <h3 className="text-xl font-semibold text-foreground mb-2">No projects found</h3>
             <p className="text-muted-foreground">
