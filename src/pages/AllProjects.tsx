@@ -64,11 +64,11 @@ const AllProjects = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 pt-20">
+      <div className="min-h-screen bg-gradient-to-br from-background via-background to-accent/10 pt-20 transition-colors duration-300">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="text-center py-12">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-sky-600 mx-auto"></div>
-            <p className="mt-4 text-slate-600">Loading projects...</p>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-sky-600 dark:border-sky-400 mx-auto"></div>
+            <p className="mt-4 text-muted-foreground">Loading projects...</p>
           </div>
         </div>
       </div>
@@ -76,23 +76,23 @@ const AllProjects = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 pt-20">
+    <div className="min-h-screen bg-gradient-to-br from-background via-background to-accent/10 pt-20 transition-colors duration-300">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Header Section */}
-        <Card className="p-8 mb-8 shadow-lg">
+        <Card className="p-8 mb-8 shadow-lg border-border bg-card/50 backdrop-blur-sm">
           <Link 
             to="/" 
-            className="inline-flex items-center text-sky-600 hover:text-sky-700 mb-6 transition-colors group"
+            className="inline-flex items-center text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 mb-6 transition-colors group"
           >
             <ArrowLeft className="mr-2 group-hover:-translate-x-1 transition-transform" size={20} />
             Back to Home
           </Link>
           
           <div className="text-center mb-8">
-            <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-sky-600 to-blue-600 bg-clip-text text-transparent mb-4">
+            <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-sky-600 to-blue-600 dark:from-sky-400 dark:to-blue-400 bg-clip-text text-transparent mb-4">
               All Projects
             </h1>
-            <p className="text-xl text-slate-600 max-w-2xl mx-auto">
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Explore all my projects across different categories and technologies
             </p>
           </div>
@@ -100,41 +100,41 @@ const AllProjects = () => {
           {/* Search and Filter Section */}
           <div className="max-w-md mx-auto mb-8">
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400" size={20} />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={20} />
               <Input
                 type="text"
                 placeholder="Search projects, tags, or technologies..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10 py-3 text-lg shadow-sm"
+                className="pl-10 py-3 text-lg shadow-sm bg-background/50 backdrop-blur-sm"
               />
             </div>
           </div>
 
           {/* Category Tabs */}
           <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-            <TabsList className="grid grid-cols-4 w-full max-w-2xl mx-auto">
+            <TabsList className="grid grid-cols-4 w-full max-w-2xl mx-auto bg-muted/50 backdrop-blur-sm">
               <TabsTrigger value="all" className="flex items-center gap-2">
                 All
-                <span className="bg-slate-200 text-slate-700 text-xs px-2 py-0.5 rounded-full">
+                <span className="bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs px-2 py-0.5 rounded-full">
                   {getCategoryCount('all')}
                 </span>
               </TabsTrigger>
               <TabsTrigger value="websites" className="flex items-center gap-2">
                 Websites
-                <span className="bg-green-100 text-green-700 text-xs px-2 py-0.5 rounded-full">
+                <span className="bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-300 text-xs px-2 py-0.5 rounded-full">
                   {getCategoryCount('websites')}
                 </span>
               </TabsTrigger>
               <TabsTrigger value="backend" className="flex items-center gap-2">
                 Backend
-                <span className="bg-blue-100 text-blue-700 text-xs px-2 py-0.5 rounded-full">
+                <span className="bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 text-xs px-2 py-0.5 rounded-full">
                   {getCategoryCount('backend')}
                 </span>
               </TabsTrigger>
               <TabsTrigger value="mobile" className="flex items-center gap-2">
                 Mobile
-                <span className="bg-purple-100 text-purple-700 text-xs px-2 py-0.5 rounded-full">
+                <span className="bg-purple-100 dark:bg-purple-900/50 text-purple-700 dark:text-purple-300 text-xs px-2 py-0.5 rounded-full">
                   {getCategoryCount('mobile')}
                 </span>
               </TabsTrigger>
@@ -159,10 +159,10 @@ const AllProjects = () => {
             ))}
           </div>
         ) : (
-          <Card className="p-12 text-center shadow-lg">
-            <Filter className="w-16 h-16 text-slate-300 mx-auto mb-4" />
-            <h3 className="text-xl font-semibold text-slate-600 mb-2">No projects found</h3>
-            <p className="text-slate-500">
+          <Card className="p-12 text-center shadow-lg bg-card/50 backdrop-blur-sm border-border">
+            <Filter className="w-16 h-16 text-muted-foreground/50 mx-auto mb-4" />
+            <h3 className="text-xl font-semibold text-foreground mb-2">No projects found</h3>
+            <p className="text-muted-foreground">
               {searchTerm ? 
                 `No projects match your search "${searchTerm}"` : 
                 `No projects in the ${activeTab} category yet`

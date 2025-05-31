@@ -26,27 +26,27 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   const getCategoryColor = (cat?: string) => {
     switch (cat) {
       case 'websites':
-        return 'bg-green-100 text-green-700 border-green-200';
+        return 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 border-green-200 dark:border-green-800';
       case 'backend':
-        return 'bg-blue-100 text-blue-700 border-blue-200';
+        return 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-800';
       case 'mobile':
-        return 'bg-purple-100 text-purple-700 border-purple-200';
+        return 'bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 border-purple-200 dark:border-purple-800';
       default:
-        return 'bg-gray-100 text-gray-700 border-gray-200';
+        return 'bg-gray-100 dark:bg-gray-800/30 text-gray-700 dark:text-gray-300 border-gray-200 dark:border-gray-700';
     }
   };
 
   return (
-    <Card className="group overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-0 shadow-lg">
+    <Card className="group overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-border shadow-lg bg-card/50 backdrop-blur-sm">
       {image_url && (
-        <div className="relative overflow-hidden h-48 bg-gradient-to-br from-slate-100 to-slate-200">
+        <div className="relative overflow-hidden h-48 bg-gradient-to-br from-muted to-muted/50">
           <img 
             src={image_url} 
             alt={title} 
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" 
           />
           {category && (
-            <div className={`absolute top-3 right-3 px-2 py-1 rounded-full text-xs font-medium border ${getCategoryColor(category)}`}>
+            <div className={`absolute top-3 right-3 px-2 py-1 rounded-full text-xs font-medium border backdrop-blur-sm ${getCategoryColor(category)}`}>
               {category.charAt(0).toUpperCase() + category.slice(1)}
             </div>
           )}
@@ -56,7 +56,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       <CardHeader className="pb-3">
         <div className="flex items-start justify-between">
           <div className="flex-1">
-            <CardTitle className="text-xl font-bold text-slate-800 group-hover:text-sky-600 transition-colors">
+            <CardTitle className="text-xl font-bold text-foreground group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors">
               {title}
             </CardTitle>
             {!image_url && category && (
@@ -71,7 +71,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       </CardHeader>
       
       <CardContent className="space-y-4">
-        <p className="text-slate-600 leading-relaxed line-clamp-3">
+        <p className="text-muted-foreground leading-relaxed line-clamp-3">
           {description}
         </p>
         
@@ -79,13 +79,13 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           {tags.slice(0, 4).map((tag) => (
             <span 
               key={tag} 
-              className="inline-block bg-sky-50 text-sky-700 text-xs font-medium px-2 py-1 rounded-md border border-sky-100"
+              className="inline-block bg-sky-50 dark:bg-sky-950/30 text-sky-700 dark:text-sky-300 text-xs font-medium px-2 py-1 rounded-md border border-sky-100 dark:border-sky-800"
             >
               {tag}
             </span>
           ))}
           {tags.length > 4 && (
-            <span className="inline-block text-slate-500 text-xs px-2 py-1">
+            <span className="inline-block text-muted-foreground text-xs px-2 py-1">
               +{tags.length - 4} more
             </span>
           )}

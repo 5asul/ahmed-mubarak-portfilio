@@ -15,14 +15,14 @@ const AdminDashboard = () => {
 
   if (!isAdmin) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex items-center justify-center p-4">
-        <Card className="w-full max-w-md shadow-xl">
+      <div className="min-h-screen bg-gradient-to-br from-background via-background to-accent/10 flex items-center justify-center p-4 transition-colors duration-300">
+        <Card className="w-full max-w-md shadow-xl bg-card/50 backdrop-blur-sm border-border">
           <CardHeader className="text-center pb-4">
-            <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <User className="w-8 h-8 text-red-600" />
+            <div className="w-16 h-16 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+              <User className="w-8 h-8 text-red-600 dark:text-red-400" />
             </div>
-            <CardTitle className="text-2xl text-red-600">Access Denied</CardTitle>
-            <CardDescription className="text-slate-600">
+            <CardTitle className="text-2xl text-red-600 dark:text-red-400">Access Denied</CardTitle>
+            <CardDescription className="text-muted-foreground">
               You don't have admin privileges to access this dashboard.
             </CardDescription>
           </CardHeader>
@@ -37,31 +37,31 @@ const AdminDashboard = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
+    <div className="min-h-screen bg-gradient-to-br from-background via-background to-accent/10 transition-colors duration-300">
       <div className="container mx-auto px-4 py-8">
         {/* Header Section */}
-        <div className="bg-white rounded-lg shadow-lg p-6 mb-8">
+        <div className="bg-card/50 backdrop-blur-sm rounded-lg shadow-lg p-6 mb-8 border border-border">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <div className="flex items-center space-x-4">
               <Link 
                 to="/" 
-                className="inline-flex items-center text-sky-600 hover:text-sky-700 transition-colors group"
+                className="inline-flex items-center text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 transition-colors group"
               >
                 <ArrowLeft className="mr-2 group-hover:-translate-x-1 transition-transform" size={20} />
                 Back to Portfolio
               </Link>
-              <div className="border-l border-slate-200 pl-4">
-                <h1 className="text-3xl font-bold bg-gradient-to-r from-sky-600 to-blue-600 bg-clip-text text-transparent">
+              <div className="border-l border-border pl-4">
+                <h1 className="text-3xl font-bold bg-gradient-to-r from-sky-600 to-blue-600 dark:from-sky-400 dark:to-blue-400 bg-clip-text text-transparent">
                   Admin Dashboard
                 </h1>
-                <p className="text-slate-600 mt-1">Welcome back, {profile?.full_name || 'Admin'}</p>
+                <p className="text-muted-foreground mt-1">Welcome back, {profile?.full_name || 'Admin'}</p>
               </div>
             </div>
             
             <Button 
               onClick={signOut} 
               variant="outline" 
-              className="flex items-center space-x-2 hover:bg-red-50 hover:text-red-600 hover:border-red-200"
+              className="flex items-center space-x-2 hover:bg-red-50 dark:hover:bg-red-950/30 hover:text-red-600 dark:hover:text-red-400 hover:border-red-200 dark:hover:border-red-800"
             >
               <LogOut size={16} />
               <span>Logout</span>
@@ -71,7 +71,7 @@ const AdminDashboard = () => {
 
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <Card className="bg-gradient-to-r from-sky-500 to-blue-600 text-white">
+          <Card className="bg-gradient-to-r from-sky-500 to-blue-600 dark:from-sky-600 dark:to-blue-700 text-white border-0 shadow-lg">
             <CardHeader className="pb-3">
               <CardTitle className="text-lg font-medium">Total Projects</CardTitle>
             </CardHeader>
@@ -83,7 +83,7 @@ const AdminDashboard = () => {
             </CardContent>
           </Card>
           
-          <Card className="bg-gradient-to-r from-green-500 to-emerald-600 text-white">
+          <Card className="bg-gradient-to-r from-green-500 to-emerald-600 dark:from-green-600 dark:to-emerald-700 text-white border-0 shadow-lg">
             <CardHeader className="pb-3">
               <CardTitle className="text-lg font-medium">Skills Added</CardTitle>
             </CardHeader>
@@ -95,7 +95,7 @@ const AdminDashboard = () => {
             </CardContent>
           </Card>
           
-          <Card className="bg-gradient-to-r from-purple-500 to-violet-600 text-white">
+          <Card className="bg-gradient-to-r from-purple-500 to-violet-600 dark:from-purple-600 dark:to-violet-700 text-white border-0 shadow-lg">
             <CardHeader className="pb-3">
               <CardTitle className="text-lg font-medium">About Sections</CardTitle>
             </CardHeader>
@@ -109,27 +109,27 @@ const AdminDashboard = () => {
         </div>
 
         {/* Main Content Tabs */}
-        <Card className="shadow-xl">
+        <Card className="shadow-xl bg-card/50 backdrop-blur-sm border-border">
           <Tabs defaultValue="projects" className="w-full">
-            <div className="border-b bg-slate-50 rounded-t-lg">
+            <div className="border-b border-border bg-muted/30 rounded-t-lg">
               <TabsList className="grid w-full grid-cols-3 bg-transparent h-auto p-0">
                 <TabsTrigger 
                   value="projects" 
-                  className="flex items-center space-x-2 py-4 data-[state=active]:bg-white data-[state=active]:shadow-sm rounded-none first:rounded-tl-lg"
+                  className="flex items-center space-x-2 py-4 data-[state=active]:bg-background data-[state=active]:shadow-sm rounded-none first:rounded-tl-lg transition-colors duration-200"
                 >
                   <Plus size={16} />
                   <span className="font-medium">Projects</span>
                 </TabsTrigger>
                 <TabsTrigger 
                   value="skills" 
-                  className="flex items-center space-x-2 py-4 data-[state=active]:bg-white data-[state=active]:shadow-sm rounded-none"
+                  className="flex items-center space-x-2 py-4 data-[state=active]:bg-background data-[state=active]:shadow-sm rounded-none transition-colors duration-200"
                 >
                   <BarChart3 size={16} />
                   <span className="font-medium">Skills</span>
                 </TabsTrigger>
                 <TabsTrigger 
                   value="about" 
-                  className="flex items-center space-x-2 py-4 data-[state=active]:bg-white data-[state=active]:shadow-sm rounded-none last:rounded-tr-lg"
+                  className="flex items-center space-x-2 py-4 data-[state=active]:bg-background data-[state=active]:shadow-sm rounded-none last:rounded-tr-lg transition-colors duration-200"
                 >
                   <Settings size={16} />
                   <span className="font-medium">About</span>
