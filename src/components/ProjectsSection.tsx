@@ -64,8 +64,8 @@ const ProjectsSection = () => {
   return (
     <section id="projects" className="bg-muted/30 dark:bg-muted/10 transition-colors duration-300">
       <div className="container mx-auto animate-fade-in-up">
-        <div className="flex justify-between items-center mb-8">
-          <div>
+        <div className="flex flex-col items-center text-center mb-8">
+          <div className="mb-6">
             <h2 className="section-title">Featured Projects</h2>
             <p className="section-subtitle">
               Here are some of my featured projects. Explore different categories below.
@@ -78,18 +78,20 @@ const ProjectsSection = () => {
           )}
         </div>
 
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="mb-8">
-          <TabsList className="grid grid-cols-4 w-full max-w-md mx-auto">
-            <TabsTrigger value="all">All</TabsTrigger>
-            <TabsTrigger value="websites">Websites</TabsTrigger>
-            <TabsTrigger value="backend">Backend</TabsTrigger>
-            <TabsTrigger value="mobile">Mobile</TabsTrigger>
-          </TabsList>
-        </Tabs>
+        <div className="flex justify-center mb-8">
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full max-w-md">
+            <TabsList className="grid grid-cols-4 w-full">
+              <TabsTrigger value="all">All</TabsTrigger>
+              <TabsTrigger value="websites">Websites</TabsTrigger>
+              <TabsTrigger value="backend">Backend</TabsTrigger>
+              <TabsTrigger value="mobile">Mobile</TabsTrigger>
+            </TabsList>
+          </Tabs>
+        </div>
 
         {filteredProjects.length > 0 ? (
           <>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-12 px-4 sm:px-0">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-12 px-4 sm:px-0 max-w-7xl mx-auto">
               {filteredProjects.map((project) => (
                 <ProjectCard key={project.id} {...project} />
               ))}

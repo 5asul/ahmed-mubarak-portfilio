@@ -81,7 +81,7 @@ const HeroSection = () => {
   return (
     <section 
       id="home" 
-      className="min-h-screen flex items-center justify-center bg-gradient-to-br from-sky-600 to-indigo-700 text-white relative overflow-hidden"
+      className="min-h-screen flex items-center justify-center bg-gradient-to-br from-sky-600 to-indigo-700 dark:from-sky-800 dark:to-indigo-900 text-white relative overflow-hidden transition-colors duration-300"
     >
       {isClient && init && (
         <Particles
@@ -98,7 +98,7 @@ const HeroSection = () => {
         <h1 className="text-3xl md:text-7xl font-extrabold mb-4">
           Hello, I'm{' '}
           <span 
-            className="inline-block text-sky-300 overflow-hidden whitespace-nowrap border-r-[0.15em] border-r-transparent animate-typing-name align-bottom"
+            className="inline-block text-sky-300 dark:text-sky-200 overflow-hidden whitespace-nowrap border-r-[0.15em] border-r-transparent animate-typing-name align-bottom"
           >
             Ahmed Mubarak
           </span>
@@ -111,7 +111,7 @@ const HeroSection = () => {
         </p>
         <a
           href="#projects"
-          className="bg-white text-sky-600 font-semibold px-8 py-3 rounded-lg shadow-lg hover:bg-sky-100 transition-all duration-300 text-lg hover:scale-105 transform"
+          className="bg-white text-sky-600 font-semibold px-8 py-3 rounded-lg shadow-lg hover:bg-sky-100 dark:bg-gray-100 dark:text-sky-700 dark:hover:bg-white transition-all duration-300 text-lg hover:scale-105 transform"
         >
           View My Work
         </a>
@@ -121,4 +121,3 @@ const HeroSection = () => {
 };
 
 export default HeroSection;
-

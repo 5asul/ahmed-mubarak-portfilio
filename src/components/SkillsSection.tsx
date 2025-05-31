@@ -42,7 +42,7 @@ const skillsData = [
 
 const SkillsSection = () => {
   return (
-    <section id="skills" className="bg-white">
+    <section id="skills" className="bg-background dark:bg-background transition-colors duration-300">
       <div className="container mx-auto animate-fade-in-up">
         <h2 className="section-title">My Skills</h2>
         <p className="section-subtitle">
@@ -52,10 +52,10 @@ const SkillsSection = () => {
           {skillsData.map((skill) => (
             <div
               key={skill.name}
-              className="flex items-center p-4 bg-slate-50 rounded-lg shadow-sm hover:shadow-md transition-shadow"
+              className="flex items-center p-4 bg-card dark:bg-card rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border border-border"
             >
-              <span className="text-sky-600">{skill.icon}</span>
-              <span className="text-slate-700 font-medium text-sm">{skill.name}</span>
+              <span className="text-sky-600 dark:text-sky-400">{skill.icon}</span>
+              <span className="text-foreground font-medium text-sm">{skill.name}</span>
             </div>
           ))}
         </div>
