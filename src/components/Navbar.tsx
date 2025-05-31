@@ -27,10 +27,20 @@ const Navbar = () => {
   };
 
   const scrollToSection = (href: string) => {
-    if (href.includes('#')) {
-      const element = document.querySelector(href.split('#')[1] ? `#${href.split('#')[1]}` : '');
+    if (href === '/') {
+      // Navigate to home and scroll to top
+      window.location.href = '/';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (href.includes('#')) {
+      const sectionId = href.split('#')[1];
+      const element = document.getElementById(sectionId);
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        // If we're not on the home page, navigate there first
+        if (location.pathname !== '/') {
+          window.location.href = href;
+        }
       }
     }
     setIsMenuOpen(false);
@@ -42,8 +52,8 @@ const Navbar = () => {
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link to="/" className="flex-shrink-0 flex items-center">
-              <div className="w-10 h-10 bg-gradient-to-r from-slate-800 to-slate-900 dark:from-emerald-500 dark:to-sky-500 rounded-lg flex items-center justify-center mr-3 transition-colors duration-300">
-                <Code className="text-emerald-400 dark:text-white w-6 h-6" />
+              <div className="w-10 h-10 bg-gradient-to-r from-sky-500 to-sky-600 dark:from-emerald-500 dark:to-sky-500 rounded-lg flex items-center justify-center mr-3 transition-colors duration-300">
+                <Code className="text-white dark:text-white w-6 h-6" />
               </div>
               <span className="text-2xl font-bold bg-gradient-to-r from-slate-800 to-slate-600 dark:from-white dark:to-slate-300 bg-clip-text text-transparent">
                 Ahmed Mubarak
