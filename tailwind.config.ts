@@ -22,6 +22,9 @@ export default {
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
       },
+      screens: {
+        'xs': '475px',
+      },
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -100,13 +103,13 @@ export default {
           },
         },
         'typing-text-reveal': {
-          '0%': { width: '0ch', opacity: '0' }, // Start with 0 characters width and invisible
-          '1%': { opacity: '1'}, // Become visible quickly
-          '100%': { width: '13ch' }, // "Ahmed Mubarak" is 13 characters
+          '0%': { width: '0ch', opacity: '0' },
+          '1%': { opacity: '1'},
+          '100%': { width: '13ch' },
         },
         'blink-cursor': {
           '0%, 100%': { borderColor: 'transparent' },
-          '50%': { borderColor: 'currentColor' }, // Uses the text color for the cursor
+          '50%': { borderColor: 'currentColor' },
         },
 			},
 			animation: {

@@ -49,12 +49,12 @@ const ProjectsSection = () => {
 
   const filteredProjects = projects.filter(project => {
     return activeTab === 'all' || project.category === activeTab;
-  }).slice(0, 3); // Limit to first 3 projects
+  }).slice(0, 3);
 
   if (loading) {
     return (
       <section id="projects" className="bg-muted/30 dark:bg-muted/10 transition-colors duration-300">
-        <div className="container mx-auto animate-fade-in-up">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 animate-fade-in-up">
           <div className="text-center py-12 text-foreground">Loading projects...</div>
         </div>
       </section>
@@ -63,8 +63,8 @@ const ProjectsSection = () => {
 
   return (
     <section id="projects" className="bg-muted/30 dark:bg-muted/10 transition-colors duration-300">
-      <div className="container mx-auto animate-fade-in-up">
-        <div className="flex flex-col items-center text-center mb-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 animate-fade-in-up">
+        <div className="flex flex-col items-center text-center mb-8 lg:mb-12">
           <div className="mb-6">
             <h2 className="section-title">Featured Projects</h2>
             <p className="section-subtitle">
@@ -73,34 +73,37 @@ const ProjectsSection = () => {
           </div>
           {isAdmin && (
             <Link to="/admin">
-              <Button variant="outline">Manage Projects</Button>
+              <Button variant="outline" className="mb-6">Manage Projects</Button>
             </Link>
           )}
         </div>
 
-        <div className="flex justify-center mb-8">
-          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full max-w-md">
-            <TabsList className="grid grid-cols-4 w-full">
-              <TabsTrigger value="all">All</TabsTrigger>
-              <TabsTrigger value="websites">Websites</TabsTrigger>
-              <TabsTrigger value="backend">Backend</TabsTrigger>
-              <TabsTrigger value="mobile">Mobile</TabsTrigger>
+        {/* Category Tabs - Responsive */}
+        <div className="flex justify-center mb-8 lg:mb-12">
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full max-w-2xl">
+            <TabsList className="grid grid-cols-2 sm:grid-cols-4 w-full bg-muted/50 backdrop-blur-sm">
+              <TabsTrigger value="all" className="text-xs sm:text-sm">All</TabsTrigger>
+              <TabsTrigger value="websites" className="text-xs sm:text-sm">Websites</TabsTrigger>
+              <TabsTrigger value="backend" className="text-xs sm:text-sm">Backend</TabsTrigger>
+              <TabsTrigger value="mobile" className="text-xs sm:text-sm">Mobile</TabsTrigger>
             </TabsList>
           </Tabs>
         </div>
 
         {filteredProjects.length > 0 ? (
           <>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-12 px-4 sm:px-0 max-w-7xl mx-auto">
+            {/* Projects Grid - Improved Responsive */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8 mb-12 max-w-7xl mx-auto">
               {filteredProjects.map((project) => (
                 <ProjectCard key={project.id} {...project} />
               ))}
             </div>
             
+            {/* View All Projects Button */}
             <div className="text-center">
               <Link
                 to="/all-projects"
-                className="inline-flex items-center bg-sky-600 hover:bg-sky-700 dark:bg-sky-500 dark:hover:bg-sky-600 text-white font-semibold px-8 py-3 rounded-lg shadow-lg transition-all duration-300 text-lg hover:scale-105 transform"
+                className="inline-flex items-center bg-sky-600 hover:bg-sky-700 dark:bg-sky-500 dark:hover:bg-sky-600 text-white font-semibold px-6 sm:px-8 py-3 rounded-lg shadow-lg transition-all duration-300 text-base sm:text-lg hover:scale-105 transform"
               >
                 View All Projects
                 <ArrowRight className="ml-2" size={20} />

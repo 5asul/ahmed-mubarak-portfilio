@@ -37,9 +37,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   };
 
   return (
-    <Card className="group overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-border shadow-lg bg-card/50 backdrop-blur-sm">
+    <Card className="group overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-border shadow-lg bg-card/50 backdrop-blur-sm h-full flex flex-col">
       {image_url && (
-        <div className="relative overflow-hidden h-48 bg-gradient-to-br from-muted to-muted/50">
+        <div className="relative overflow-hidden h-48 sm:h-52 bg-gradient-to-br from-muted to-muted/50">
           <img 
             src={image_url} 
             alt={title} 
@@ -53,14 +53,14 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         </div>
       )}
       
-      <CardHeader className="pb-3">
+      <CardHeader className="pb-3 flex-shrink-0">
         <div className="flex items-start justify-between">
-          <div className="flex-1">
-            <CardTitle className="text-xl font-bold text-foreground group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors">
+          <div className="flex-1 min-w-0">
+            <CardTitle className="text-lg sm:text-xl font-bold text-foreground group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors line-clamp-2">
               {title}
             </CardTitle>
             {!image_url && category && (
-              <CardDescription className="mt-1">
+              <CardDescription className="mt-2">
                 <span className={`inline-block px-2 py-1 rounded-full text-xs font-medium border ${getCategoryColor(category)}`}>
                   {category.charAt(0).toUpperCase() + category.slice(1)}
                 </span>
@@ -70,11 +70,12 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         </div>
       </CardHeader>
       
-      <CardContent className="space-y-4">
-        <p className="text-muted-foreground leading-relaxed line-clamp-3">
+      <CardContent className="space-y-4 flex-grow flex flex-col">
+        <p className="text-muted-foreground leading-relaxed line-clamp-3 text-sm sm:text-base flex-grow">
           {description}
         </p>
         
+        {/* Tags */}
         <div className="flex flex-wrap gap-1">
           {tags.slice(0, 4).map((tag) => (
             <span 
@@ -91,13 +92,14 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           )}
         </div>
         
-        <div className="flex gap-2 pt-2">
+        {/* Action Buttons */}
+        <div className="flex gap-2 pt-2 mt-auto">
           {live_url && (
             <Button
               asChild
               variant="default"
               size="sm"
-              className="flex-1"
+              className="flex-1 text-xs sm:text-sm"
             >
               <a
                 href={live_url}
@@ -106,7 +108,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
                 className="flex items-center justify-center gap-1"
               >
                 <ExternalLink size={14} />
-                Live Demo
+                <span className="hidden sm:inline">Live Demo</span>
+                <span className="sm:hidden">Demo</span>
               </a>
             </Button>
           )}
@@ -115,7 +118,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
               asChild
               variant="outline"
               size="sm"
-              className="flex-1"
+              className="flex-1 text-xs sm:text-sm"
             >
               <a
                 href={repo_url}
