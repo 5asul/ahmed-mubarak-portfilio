@@ -4,10 +4,8 @@ import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { useForm } from 'react-hook-form';
 import { Plus, Edit, Trash2, Calendar, MapPin, Building } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
@@ -285,7 +283,7 @@ const ExperienceManager = () => {
                   control={form.control}
                   name="is_current"
                   render={({ field }) => (
-                    <FormItem className="flex items-center space-x-2">
+                    <FormItem className="flex items-center space-x-2 pt-6">
                       <FormControl>
                         <input
                           type="checkbox"
