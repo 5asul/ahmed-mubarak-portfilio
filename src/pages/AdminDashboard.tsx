@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Plus, Settings, LogOut, User, BarChart3 } from 'lucide-react';
+import { ArrowLeft, Plus, Settings, LogOut, User, BarChart3, FileText } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -9,6 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import ProjectsManager from '@/components/admin/ProjectsManager';
 import SkillsManager from '@/components/admin/SkillsManager';
 import AboutManager from '@/components/admin/AboutManager';
+import CVManager from '@/components/admin/CVManager';
 
 const AdminDashboard = () => {
   const { user, profile, signOut, isAdmin } = useAuth();
@@ -70,7 +71,7 @@ const AdminDashboard = () => {
         </div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           <Card className="bg-gradient-to-r from-sky-500 to-blue-600 dark:from-sky-600 dark:to-blue-700 text-white border-0 shadow-lg">
             <CardHeader className="pb-3">
               <CardTitle className="text-lg font-medium">Total Projects</CardTitle>
@@ -106,13 +107,25 @@ const AdminDashboard = () => {
               </div>
             </CardContent>
           </Card>
+
+          <Card className="bg-gradient-to-r from-orange-500 to-red-600 dark:from-orange-600 dark:to-red-700 text-white border-0 shadow-lg">
+            <CardHeader className="pb-3">
+              <CardTitle className="text-lg font-medium">CV Documents</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="flex items-center justify-between">
+                <span className="text-3xl font-bold">1</span>
+                <FileText className="w-8 h-8 opacity-80" />
+              </div>
+            </CardContent>
+          </Card>
         </div>
 
         {/* Main Content Tabs */}
         <Card className="shadow-xl bg-card/70 backdrop-blur-sm border-border">
           <Tabs defaultValue="projects" className="w-full">
             <div className="border-b border-border bg-muted/30 rounded-t-lg">
-              <TabsList className="grid w-full grid-cols-3 bg-transparent h-auto p-0">
+              <TabsList className="grid w-full grid-cols-4 bg-transparent h-auto p-0">
                 <TabsTrigger 
                   value="projects" 
                   className="flex items-center space-x-2 py-4 data-[state=active]:bg-background data-[state=active]:shadow-sm rounded-none first:rounded-tl-lg transition-colors duration-200"
@@ -129,10 +142,17 @@ const AdminDashboard = () => {
                 </TabsTrigger>
                 <TabsTrigger 
                   value="about" 
-                  className="flex items-center space-x-2 py-4 data-[state=active]:bg-background data-[state=active]:shadow-sm rounded-none last:rounded-tr-lg transition-colors duration-200"
+                  className="flex items-center space-x-2 py-4 data-[state=active]:bg-background data-[state=active]:shadow-sm rounded-none transition-colors duration-200"
                 >
                   <Settings size={16} />
                   <span className="font-medium">About</span>
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="cv" 
+                  className="flex items-center space-x-2 py-4 data-[state=active]:bg-background data-[state=active]:shadow-sm rounded-none last:rounded-tr-lg transition-colors duration-200"
+                >
+                  <FileText size={16} />
+                  <span className="font-medium">CV</span>
                 </TabsTrigger>
               </TabsList>
             </div>
@@ -148,6 +168,10 @@ const AdminDashboard = () => {
 
               <TabsContent value="about" className="mt-0">
                 <AboutManager />
+              </TabsContent>
+
+              <TabsContent value="cv" className="mt-0">
+                <CVManager />
               </TabsContent>
             </div>
           </Tabs>

@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, User, LogOut, Settings, Code } from 'lucide-react';
+import { Menu, X, User, LogOut, Settings, Code, Download, Eye } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/ThemeToggle';
@@ -29,21 +29,38 @@ const Navbar = () => {
   const scrollToSection = (href: string) => {
     if (href === '/') {
       // Navigate to home and scroll to top
-      window.location.href = '/';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (location.pathname !== '/') {
+        window.location.href = '/';
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
     } else if (href.includes('#')) {
       const sectionId = href.split('#')[1];
-      const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
+      if (location.pathname !== '/') {
+        window.location.href = href;
       } else {
-        // If we're not on the home page, navigate there first
-        if (location.pathname !== '/') {
-          window.location.href = href;
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
         }
       }
     }
     setIsMenuOpen(false);
+  };
+
+  const handleDownloadCV = () => {
+    // Create a link element and trigger download
+    const link = document.createElement('a');
+    link.href = '/AHMED_MUBARAK_RESUME.pdf';
+    link.download = 'Ahmed_Mubarak_Resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const handleViewCV = () => {
+    // Open CV in a new tab
+    window.open('/AHMED_MUBARAK_RESUME.pdf', '_blank');
   };
 
   return (
@@ -52,8 +69,8 @@ const Navbar = () => {
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link to="/" className="flex-shrink-0 flex items-center">
-              <div className="w-10 h-10 bg-gradient-to-r from-sky-500 to-sky-600 dark:from-emerald-500 dark:to-sky-500 rounded-lg flex items-center justify-center mr-3 transition-colors duration-300">
-                <Code className="text-white dark:text-white w-6 h-6" />
+              <div className="w-10 h-10 bg-gradient-to-r from-sky-500 to-sky-600 rounded-lg flex items-center justify-center mr-3 transition-colors duration-300">
+                <Code className="text-white w-6 h-6" />
               </div>
               <span className="text-2xl font-bold bg-gradient-to-r from-slate-800 to-slate-600 dark:from-white dark:to-slate-300 bg-clip-text text-transparent">
                 Ahmed Mubarak
@@ -76,18 +93,37 @@ const Navbar = () => {
               </button>
             ))}
             
+            {/* CV Actions */}
+            <div className="flex items-center space-x-2">
+              <Button
+                onClick={handleViewCV}
+                variant="outline"
+                size="sm"
+                className="flex items-center space-x-1 border-sky-200 dark:border-sky-800 hover:bg-sky-50 dark:hover:bg-sky-950/30 hover:text-sky-600 dark:hover:text-sky-400"
+              >
+                <Eye size={14} />
+                <span>View CV</span>
+              </Button>
+              <Button
+                onClick={handleDownloadCV}
+                size="sm"
+                className="flex items-center space-x-1 bg-sky-600 hover:bg-sky-700 dark:bg-sky-500 dark:hover:bg-sky-600"
+              >
+                <Download size={14} />
+                <span>Download CV</span>
+              </Button>
+            </div>
+            
             <ThemeToggle />
             
-            {user ? (
+            {user && isAdmin && (
               <div className="flex items-center space-x-4">
-                {isAdmin && (
-                  <Link to="/admin">
-                    <Button variant="outline" size="sm" className="flex items-center space-x-1">
-                      <Settings size={14} />
-                      <span>Admin</span>
-                    </Button>
-                  </Link>
-                )}
+                <Link to="/admin">
+                  <Button variant="outline" size="sm" className="flex items-center space-x-1">
+                    <Settings size={14} />
+                    <span>Admin</span>
+                  </Button>
+                </Link>
                 <Button
                   onClick={signOut}
                   variant="ghost"
@@ -98,13 +134,6 @@ const Navbar = () => {
                   <span>Logout</span>
                 </Button>
               </div>
-            ) : (
-              <Link to="/auth">
-                <Button size="sm" className="flex items-center space-x-1">
-                  <User size={14} />
-                  <span>Admin Login</span>
-                </Button>
-              </Link>
             )}
           </div>
 
@@ -137,39 +166,55 @@ const Navbar = () => {
               </button>
             ))}
             
+            {/* Mobile CV Actions */}
             <div className="px-3 py-2 space-y-2">
-              {user ? (
-                <>
-                  {isAdmin && (
-                    <Link to="/admin" onClick={() => setIsMenuOpen(false)}>
-                      <Button variant="outline" size="sm" className="w-full flex items-center justify-center space-x-1">
-                        <Settings size={14} />
-                        <span>Admin Dashboard</span>
-                      </Button>
-                    </Link>
-                  )}
-                  <Button
-                    onClick={() => {
-                      signOut();
-                      setIsMenuOpen(false);
-                    }}
-                    variant="ghost"
-                    size="sm"
-                    className="w-full flex items-center justify-center space-x-1"
-                  >
-                    <LogOut size={14} />
-                    <span>Logout</span>
-                  </Button>
-                </>
-              ) : (
-                <Link to="/auth" onClick={() => setIsMenuOpen(false)}>
-                  <Button size="sm" className="w-full flex items-center justify-center space-x-1">
-                    <User size={14} />
-                    <span>Admin Login</span>
+              <Button
+                onClick={() => {
+                  handleViewCV();
+                  setIsMenuOpen(false);
+                }}
+                variant="outline"
+                size="sm"
+                className="w-full flex items-center justify-center space-x-1 border-sky-200 dark:border-sky-800 hover:bg-sky-50 dark:hover:bg-sky-950/30 hover:text-sky-600 dark:hover:text-sky-400"
+              >
+                <Eye size={14} />
+                <span>View CV</span>
+              </Button>
+              <Button
+                onClick={() => {
+                  handleDownloadCV();
+                  setIsMenuOpen(false);
+                }}
+                size="sm"
+                className="w-full flex items-center justify-center space-x-1 bg-sky-600 hover:bg-sky-700 dark:bg-sky-500 dark:hover:bg-sky-600"
+              >
+                <Download size={14} />
+                <span>Download CV</span>
+              </Button>
+            </div>
+            
+            {user && isAdmin && (
+              <div className="px-3 py-2 space-y-2">
+                <Link to="/admin" onClick={() => setIsMenuOpen(false)}>
+                  <Button variant="outline" size="sm" className="w-full flex items-center justify-center space-x-1">
+                    <Settings size={14} />
+                    <span>Admin Dashboard</span>
                   </Button>
                 </Link>
-              )}
-            </div>
+                <Button
+                  onClick={() => {
+                    signOut();
+                    setIsMenuOpen(false);
+                  }}
+                  variant="ghost"
+                  size="sm"
+                  className="w-full flex items-center justify-center space-x-1"
+                >
+                  <LogOut size={14} />
+                  <span>Logout</span>
+                </Button>
+              </div>
+            )}
           </div>
         </div>
       )}
