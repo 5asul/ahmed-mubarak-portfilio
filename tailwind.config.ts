@@ -111,12 +111,22 @@ export default {
           '0%, 100%': { borderColor: 'transparent' },
           '50%': { borderColor: 'currentColor' },
         },
+        'float': {
+          '0%, 100%': { transform: 'translateY(0px)' },
+          '50%': { transform: 'translateY(-10px)' },
+        },
+        'bounce': {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-10px)' },
+        },
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
         'fade-in-up': 'fade-in-up 0.5s ease-out forwards',
         'typing-name': 'typing-text-reveal 2s steps(13, end) 0.7s forwards, blink-cursor 0.75s step-end infinite 0.7s',
+        'float': 'float 3s ease-in-out infinite',
+        'bounce': 'bounce 2s ease-in-out infinite',
 			}
 		}
 	},
