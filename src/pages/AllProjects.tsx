@@ -7,6 +7,7 @@ import ProjectCard from '@/components/ProjectCard';
 import { Input } from '@/components/ui/input';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card } from '@/components/ui/card';
+import { useTranslation } from 'react-i18next';
 
 interface Project {
   id: string;
@@ -26,6 +27,7 @@ const AllProjects = () => {
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [activeTab, setActiveTab] = useState('all');
+  const { t } = useTranslation();
 
   useEffect(() => {
     fetchProjects();
@@ -68,7 +70,7 @@ const AllProjects = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="text-center py-12">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-sky-600 dark:border-sky-400 mx-auto"></div>
-            <p className="mt-4 text-muted-foreground">Loading projects...</p>
+            <p className="mt-4 text-muted-foreground">{t('projects.loadingProjects')}</p>
           </div>
         </div>
       </div>
@@ -85,15 +87,15 @@ const AllProjects = () => {
             className="inline-flex items-center text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 mb-6 transition-colors group"
           >
             <ArrowLeft className="mr-2 group-hover:-translate-x-1 transition-transform" size={20} />
-            Back to Home
+            {t('nav.backToHome')}
           </Link>
           
           <div className="text-center mb-8">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-sky-600 to-blue-600 dark:from-sky-400 dark:to-blue-400 bg-clip-text text-transparent mb-4">
-              All Projects
+              {t('projects.allProjectsTitle')}
             </h1>
             <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">
-              Explore all my projects across different categories and technologies
+              {t('projects.allProjectsSubtitle')}
             </p>
           </div>
 
@@ -103,7 +105,7 @@ const AllProjects = () => {
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={20} />
               <Input
                 type="text"
-                placeholder="Search projects, tags, or technologies..."
+                placeholder={t('projects.searchPlaceholder')}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="pl-10 py-3 text-base sm:text-lg shadow-sm bg-background/50 backdrop-blur-sm"
@@ -115,26 +117,26 @@ const AllProjects = () => {
           <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
             <TabsList className="grid grid-cols-2 sm:grid-cols-4 w-full max-w-2xl mx-auto bg-muted/50 backdrop-blur-sm">
               <TabsTrigger value="all" className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm">
-                All
+                {t('projects.all')}
                 <span className="bg-muted-foreground/20 text-foreground text-xs px-1.5 sm:px-2 py-0.5 rounded-full">
                   {getCategoryCount('all')}
                 </span>
               </TabsTrigger>
               <TabsTrigger value="websites" className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm">
-                <span className="hidden sm:inline">Websites</span>
-                <span className="sm:hidden">Web</span>
+                <span className="hidden sm:inline">{t('projects.websites')}</span>
+                <span className="sm:hidden">{t('projects.web')}</span>
                 <span className="bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-300 text-xs px-1.5 sm:px-2 py-0.5 rounded-full">
                   {getCategoryCount('websites')}
                 </span>
               </TabsTrigger>
               <TabsTrigger value="backend" className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm">
-                Backend
+                {t('projects.backend')}
                 <span className="bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 text-xs px-1.5 sm:px-2 py-0.5 rounded-full">
                   {getCategoryCount('backend')}
                 </span>
               </TabsTrigger>
               <TabsTrigger value="mobile" className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm">
-                Mobile
+                {t('projects.mobile')}
                 <span className="bg-purple-100 dark:bg-purple-900/50 text-purple-700 dark:text-purple-300 text-xs px-1.5 sm:px-2 py-0.5 rounded-full">
                   {getCategoryCount('mobile')}
                 </span>
@@ -162,11 +164,11 @@ const AllProjects = () => {
         ) : (
           <Card className="p-8 sm:p-12 text-center shadow-lg bg-card/70 backdrop-blur-sm border-border">
             <Filter className="w-12 h-12 sm:w-16 sm:h-16 text-muted-foreground/50 mx-auto mb-4" />
-            <h3 className="text-lg sm:text-xl font-semibold text-foreground mb-2">No projects found</h3>
+            <h3 className="text-lg sm:text-xl font-semibold text-foreground mb-2">{t('projects.noProjectsFound')}</h3>
             <p className="text-muted-foreground text-sm sm:text-base">
               {searchTerm ? 
-                `No projects match your search "${searchTerm}"` : 
-                `No projects in the ${activeTab} category yet`
+                `${t('projects.noProjectsMatch')} "${searchTerm}"` : 
+                `${t('projects.noProjectsCategory')} ${activeTab}`
               }
             </p>
           </Card>

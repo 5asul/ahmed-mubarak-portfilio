@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Plus, Settings, LogOut, User, BarChart3, FileText, Building, Palette } from 'lucide-react';
@@ -11,9 +12,11 @@ import AboutManager from '@/components/admin/AboutManager';
 import CVManager from '@/components/admin/CVManager';
 import ExperienceManager from '@/components/admin/ExperienceManager';
 import AvatarManager from '@/components/admin/AvatarManager';
+import { useTranslation } from 'react-i18next';
 
 const AdminDashboard = () => {
   const { user, profile, signOut, isAdmin } = useAuth();
+  const { t } = useTranslation();
 
   if (!isAdmin) {
     return (
@@ -23,14 +26,14 @@ const AdminDashboard = () => {
             <div className="w-16 h-16 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
               <User className="w-8 h-8 text-red-600 dark:text-red-400" />
             </div>
-            <CardTitle className="text-2xl text-red-600 dark:text-red-400">Access Denied</CardTitle>
+            <CardTitle className="text-2xl text-red-600 dark:text-red-400">{t('admin.accessDenied')}</CardTitle>
             <CardDescription className="text-muted-foreground">
-              You don't have admin privileges to access this dashboard.
+              {t('admin.noAdminPrivileges')}
             </CardDescription>
           </CardHeader>
           <CardContent className="text-center">
             <Link to="/">
-              <Button className="w-full">Return to Portfolio</Button>
+              <Button className="w-full">{t('admin.returnToPortfolio')}</Button>
             </Link>
           </CardContent>
         </Card>
@@ -50,13 +53,13 @@ const AdminDashboard = () => {
                 className="inline-flex items-center text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 transition-colors group"
               >
                 <ArrowLeft className="mr-2 group-hover:-translate-x-1 transition-transform" size={20} />
-                Back to Portfolio
+                {t('nav.backToPortfolio')}
               </Link>
               <div className="border-l border-border pl-4">
                 <h1 className="text-3xl font-bold bg-gradient-to-r from-sky-600 to-blue-600 dark:from-sky-400 dark:to-blue-400 bg-clip-text text-transparent">
-                  Admin Dashboard
+                  {t('admin.title')}
                 </h1>
-                <p className="text-muted-foreground mt-1">Welcome back, {profile?.full_name || 'Admin'}</p>
+                <p className="text-muted-foreground mt-1">{t('admin.welcomeBack')}, {profile?.full_name || 'Admin'}</p>
               </div>
             </div>
             
@@ -66,7 +69,7 @@ const AdminDashboard = () => {
               className="flex items-center space-x-2 hover:bg-red-50 dark:hover:bg-red-950/30 hover:text-red-600 dark:hover:text-red-400 hover:border-red-200 dark:hover:border-red-800"
             >
               <LogOut size={16} />
-              <span>Logout</span>
+              <span>{t('admin.logout')}</span>
             </Button>
           </div>
         </div>
@@ -75,7 +78,7 @@ const AdminDashboard = () => {
         <div className="grid grid-cols-1 md:grid-cols-6 gap-6 mb-8">
           <Card className="bg-gradient-to-r from-sky-500 to-blue-600 dark:from-sky-600 dark:to-blue-700 text-white border-0 shadow-lg">
             <CardHeader className="pb-3">
-              <CardTitle className="text-lg font-medium">Total Projects</CardTitle>
+              <CardTitle className="text-lg font-medium">{t('admin.totalProjects')}</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="flex items-center justify-between">
@@ -87,7 +90,7 @@ const AdminDashboard = () => {
           
           <Card className="bg-gradient-to-r from-green-500 to-emerald-600 dark:from-green-600 dark:to-emerald-700 text-white border-0 shadow-lg">
             <CardHeader className="pb-3">
-              <CardTitle className="text-lg font-medium">Skills Added</CardTitle>
+              <CardTitle className="text-lg font-medium">{t('admin.skillsAdded')}</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="flex items-center justify-between">
@@ -99,7 +102,7 @@ const AdminDashboard = () => {
           
           <Card className="bg-gradient-to-r from-purple-500 to-violet-600 dark:from-purple-600 dark:to-violet-700 text-white border-0 shadow-lg">
             <CardHeader className="pb-3">
-              <CardTitle className="text-lg font-medium">About Sections</CardTitle>
+              <CardTitle className="text-lg font-medium">{t('admin.aboutSections')}</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="flex items-center justify-between">
@@ -111,7 +114,7 @@ const AdminDashboard = () => {
 
           <Card className="bg-gradient-to-r from-orange-500 to-red-600 dark:from-orange-600 dark:to-red-700 text-white border-0 shadow-lg">
             <CardHeader className="pb-3">
-              <CardTitle className="text-lg font-medium">CV Documents</CardTitle>
+              <CardTitle className="text-lg font-medium">{t('admin.cvDocuments')}</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="flex items-center justify-between">
@@ -123,7 +126,7 @@ const AdminDashboard = () => {
 
           <Card className="bg-gradient-to-r from-teal-500 to-cyan-600 dark:from-teal-600 dark:to-cyan-700 text-white border-0 shadow-lg">
             <CardHeader className="pb-3">
-              <CardTitle className="text-lg font-medium">Experiences</CardTitle>
+              <CardTitle className="text-lg font-medium">{t('admin.experiences')}</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="flex items-center justify-between">
@@ -135,7 +138,7 @@ const AdminDashboard = () => {
 
           <Card className="bg-gradient-to-r from-pink-500 to-rose-600 dark:from-pink-600 dark:to-rose-700 text-white border-0 shadow-lg">
             <CardHeader className="pb-3">
-              <CardTitle className="text-lg font-medium">Avatar Config</CardTitle>
+              <CardTitle className="text-lg font-medium">{t('admin.avatarConfig')}</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="flex items-center justify-between">
@@ -156,42 +159,42 @@ const AdminDashboard = () => {
                   className="flex items-center space-x-2 py-4 data-[state=active]:bg-background data-[state=active]:shadow-sm rounded-none first:rounded-tl-lg transition-colors duration-200"
                 >
                   <Plus size={16} />
-                  <span className="font-medium">Projects</span>
+                  <span className="font-medium">{t('admin.projects')}</span>
                 </TabsTrigger>
                 <TabsTrigger 
                   value="skills" 
                   className="flex items-center space-x-2 py-4 data-[state=active]:bg-background data-[state=active]:shadow-sm rounded-none transition-colors duration-200"
                 >
                   <BarChart3 size={16} />
-                  <span className="font-medium">Skills</span>
+                  <span className="font-medium">{t('admin.skills')}</span>
                 </TabsTrigger>
                 <TabsTrigger 
                   value="about" 
                   className="flex items-center space-x-2 py-4 data-[state=active]:bg-background data-[state=active]:shadow-sm rounded-none transition-colors duration-200"
                 >
                   <Settings size={16} />
-                  <span className="font-medium">About</span>
+                  <span className="font-medium">{t('admin.about')}</span>
                 </TabsTrigger>
                 <TabsTrigger 
                   value="cv" 
                   className="flex items-center space-x-2 py-4 data-[state=active]:bg-background data-[state=active]:shadow-sm rounded-none transition-colors duration-200"
                 >
                   <FileText size={16} />
-                  <span className="font-medium">CV</span>
+                  <span className="font-medium">{t('admin.cv')}</span>
                 </TabsTrigger>
                 <TabsTrigger 
                   value="experience" 
                   className="flex items-center space-x-2 py-4 data-[state=active]:bg-background data-[state=active]:shadow-sm rounded-none transition-colors duration-200"
                 >
                   <Building size={16} />
-                  <span className="font-medium">Experience</span>
+                  <span className="font-medium">{t('admin.experience')}</span>
                 </TabsTrigger>
                 <TabsTrigger 
                   value="avatar" 
                   className="flex items-center space-x-2 py-4 data-[state=active]:bg-background data-[state=active]:shadow-sm rounded-none last:rounded-tr-lg transition-colors duration-200"
                 >
                   <Palette size={16} />
-                  <span className="font-medium">Avatar</span>
+                  <span className="font-medium">{t('admin.avatar')}</span>
                 </TabsTrigger>
               </TabsList>
             </div>

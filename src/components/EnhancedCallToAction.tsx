@@ -2,8 +2,11 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { ExternalLink, Mail, Download, Github, Linkedin } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const EnhancedCallToAction = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="space-y-6 animate-fade-in-up" style={{ animationDelay: '1s' }}>
       {/* Primary Actions */}
@@ -15,7 +18,7 @@ const EnhancedCallToAction = () => {
         >
           <a href="#projects" className="flex items-center gap-2">
             <ExternalLink className="w-5 h-5 group-hover:rotate-12 transition-transform" />
-            View My Portfolio
+            {t('hero.viewPortfolio')}
           </a>
         </Button>
 
@@ -27,7 +30,7 @@ const EnhancedCallToAction = () => {
         >
           <a href="#contact" className="flex items-center gap-2">
             <Mail className="w-5 h-5 group-hover:rotate-12 transition-transform" />
-            Hire Me Now
+            {t('hero.hireMe')}
           </a>
         </Button>
       </div>
@@ -47,7 +50,7 @@ const EnhancedCallToAction = () => {
             className="flex items-center gap-2"
           >
             <Download className="w-4 h-4 group-hover:translate-y-0.5 transition-transform" />
-            Download CV
+            {t('hero.downloadCV')}
           </a>
         </Button>
 
@@ -64,7 +67,7 @@ const EnhancedCallToAction = () => {
             className="flex items-center gap-2"
           >
             <Github className="w-4 h-4 group-hover:scale-110 transition-transform" />
-            GitHub
+            {t('hero.github')}
           </a>
         </Button>
 
@@ -81,7 +84,7 @@ const EnhancedCallToAction = () => {
             className="flex items-center gap-2"
           >
             <Linkedin className="w-4 h-4 group-hover:scale-110 transition-transform" />
-            LinkedIn
+            {t('hero.linkedin')}
           </a>
         </Button>
       </div>

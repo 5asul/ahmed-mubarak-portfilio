@@ -1,4 +1,3 @@
-
 import React, { useEffect, useMemo, useState, useCallback } from 'react';
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { type Container, type ISourceOptions } from "@tsparticles/engine";
@@ -9,10 +8,12 @@ import FloatingProjectPreviews from './FloatingProjectPreviews';
 import AnimatedTechStack from './AnimatedTechStack';
 import ClientStats from './ClientStats';
 import EnhancedCallToAction from './EnhancedCallToAction';
+import { useTranslation } from 'react-i18next';
 
 const HeroSection = () => {
   const [isClient, setIsClient] = useState(false);
   const [init, setInit] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     setIsClient(true);
@@ -132,12 +133,12 @@ const HeroSection = () => {
         <div className="mb-6">
           <h1 className="text-4xl md:text-7xl lg:text-8xl font-extrabold mb-4 text-foreground leading-tight">
             <span className="block mb-2 bg-gradient-to-r from-slate-900 via-sky-800 to-slate-900 dark:from-white dark:via-sky-200 dark:to-white bg-clip-text text-transparent">
-              Hello, I'm
+              {t('hero.greeting')}
             </span>
             <span 
               className="inline-block bg-gradient-to-r from-sky-500 via-purple-600 to-emerald-500 bg-clip-text text-transparent overflow-hidden whitespace-nowrap border-r-[0.15em] border-r-sky-500 animate-typing-name align-bottom"
             >
-              Ahmed Mubarak
+              {t('hero.name')}
             </span>
           </h1>
         </div>
@@ -145,26 +146,25 @@ const HeroSection = () => {
         {/* Enhanced Subtitle */}
         <div className="mb-6">
           <p className="text-2xl md:text-4xl lg:text-5xl font-bold mb-2 bg-gradient-to-r from-sky-600 to-purple-600 dark:from-sky-400 dark:to-purple-400 bg-clip-text text-transparent">
-            Full Stack Developer
+            {t('hero.title')}
           </p>
           <div className="flex justify-center items-center gap-2 text-lg md:text-xl text-muted-foreground">
             <span>•</span>
-            <span>Problem Solver</span>
+            <span>{t('hero.subtitle1')}</span>
             <span>•</span>
-            <span>Innovation Driver</span>
+            <span>{t('hero.subtitle2')}</span>
             <span>•</span>
-            <span>Tech Enthusiast</span>
+            <span>{t('hero.subtitle3')}</span>
           </div>
         </div>
 
         {/* Enhanced Description with better formatting */}
         <div className="mb-8 max-w-4xl mx-auto">
           <p className="text-lg md:text-xl lg:text-2xl mb-4 text-muted-foreground leading-relaxed font-medium">
-            I create <span className="text-sky-600 dark:text-sky-400 font-semibold">exceptional digital experiences</span> through 
-            modern web applications, AI-powered solutions, and scalable architectures.
+            {t('hero.description1')}
           </p>
           <p className="text-base md:text-lg text-muted-foreground/80">
-            Ready to transform your vision into reality with cutting-edge technology and creative solutions.
+            {t('hero.description2')}
           </p>
         </div>
 
@@ -179,23 +179,23 @@ const HeroSection = () => {
         {/* Enhanced Trust Indicators with professional developer icons */}
         <div className="mt-12 animate-fade-in-up" style={{ animationDelay: '1.5s' }}>
           <div className="inline-block px-6 py-4 bg-white/10 dark:bg-white/5 backdrop-blur-lg rounded-2xl border border-white/20 shadow-lg">
-            <p className="text-sm font-medium text-muted-foreground mb-3">Trusted by clients worldwide</p>
+            <p className="text-sm font-medium text-muted-foreground mb-3">{t('hero.trustedBy')}</p>
             <div className="flex justify-center items-center gap-4 sm:gap-6 text-xs sm:text-sm flex-wrap">
               <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400">
                 <Shield className="w-4 h-4" />
-                <span className="font-semibold">Secure Code</span>
+                <span className="font-semibold">{t('hero.secureCode')}</span>
               </div>
               <div className="flex items-center gap-2 text-sky-600 dark:text-sky-400">
                 <Zap className="w-4 h-4" />
-                <span className="font-semibold">Fast Delivery</span>
+                <span className="font-semibold">{t('hero.fastDelivery')}</span>
               </div>
               <div className="flex items-center gap-2 text-purple-600 dark:text-purple-400">
                 <Award className="w-4 h-4" />
-                <span className="font-semibold">Quality First</span>
+                <span className="font-semibold">{t('hero.qualityFirst')}</span>
               </div>
               <div className="flex items-center gap-2 text-orange-600 dark:text-orange-400">
                 <Rocket className="w-4 h-4" />
-                <span className="font-semibold">Scalable Solutions</span>
+                <span className="font-semibold">{t('hero.scalableSolutions')}</span>
               </div>
             </div>
           </div>
