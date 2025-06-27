@@ -33,6 +33,39 @@ export type Database = {
         }
         Relationships: []
       }
+      avatar_config: {
+        Row: {
+          created_at: string
+          id: string
+          orbital_speed_1: number
+          orbital_speed_2: number
+          show_animated_border: boolean
+          show_floating_particles: boolean
+          show_orbital_elements: boolean
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          orbital_speed_1?: number
+          orbital_speed_2?: number
+          show_animated_border?: boolean
+          show_floating_particles?: boolean
+          show_orbital_elements?: boolean
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          orbital_speed_1?: number
+          orbital_speed_2?: number
+          show_animated_border?: boolean
+          show_floating_particles?: boolean
+          show_orbital_elements?: boolean
+          updated_at?: string
+        }
+        Relationships: []
+      }
       experiences: {
         Row: {
           company_name: string
