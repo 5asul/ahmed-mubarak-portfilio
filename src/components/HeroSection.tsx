@@ -3,6 +3,7 @@ import React, { useEffect, useMemo, useState, useCallback } from 'react';
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { type Container, type ISourceOptions } from "@tsparticles/engine";
 import { loadSlim } from "@tsparticles/slim"; 
+import { Shield, Zap, Award, Rocket } from 'lucide-react';
 import ProfessionalAvatar from './ProfessionalAvatar';
 import FloatingProjectPreviews from './FloatingProjectPreviews';
 import AnimatedTechStack from './AnimatedTechStack';
