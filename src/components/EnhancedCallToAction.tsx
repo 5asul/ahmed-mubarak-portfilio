@@ -1,11 +1,84 @@
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { ExternalLink, Mail, Download, Github, Linkedin } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { supabase } from '@/integrations/supabase/client';
+import { useToast } from '@/hooks/use-toast';
 
 const EnhancedCallToAction = () => {
   const { t } = useTranslation();
+  const { toast } = useToast();
+  const [currentCV, setCurrentCV] = useState<string | null>(null);
+  const [cvUrl, setCvUrl] = useState<string>('/AHMED_MUBARAK_RESUME.pdf'); // fallback to static file
+
+  useEffect(() => {
+    checkCurrentCV();
+  }, []);
+
+  const checkCurrentCV = async () => {
+    try {
+      const { data, error } = await supabase.storage
+        .from('documents')
+        .list('cv', { limit: 1 });
+
+      if (error) {
+        console.warn('Could not fetch CV from storage, using static fallback:', error);
+        return;
+      }
+
+      if (data && data.length > 0) {
+        setCurrentCV(data[0].name);
+        
+        // Get the public URL for the CV
+        const { data: urlData } = supabase.storage
+          .from('documents')
+          .getPublicUrl(`cv/${data[0].name}`);
+        
+        setCvUrl(urlData.publicUrl);
+      }
+    } catch (error) {
+      console.warn('Error checking current CV, using static fallback:', error);
+    }
+  };
+
+  const handleDownloadCV = async () => {
+    try {
+      if (currentCV) {
+        // Download from Supabase storage
+        const { data, error } = await supabase.storage
+          .from('documents')
+          .download(`cv/${currentCV}`);
+
+        if (error) throw error;
+
+        const url = URL.createObjectURL(data);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'Ahmed_Mubarak_Resume.pdf';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      } else {
+        // Fallback to static file
+        const a = document.createElement('a');
+        a.href = '/AHMED_MUBARAK_RESUME.pdf';
+        a.download = 'Ahmed_Mubarak_Resume.pdf';
+        a.target = '_blank';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      }
+    } catch (error) {
+      console.error('Error downloading CV:', error);
+      toast({
+        variant: "destructive",
+        title: "Download Failed",
+        description: "Could not download CV. Please try again.",
+      });
+    }
+  };
 
   return (
     <div className="space-y-6 animate-fade-in-up" style={{ animationDelay: '1s' }}>
@@ -38,20 +111,13 @@ const EnhancedCallToAction = () => {
       {/* Secondary Actions */}
       <div className="flex justify-center gap-4">
         <Button
-          asChild
+          onClick={handleDownloadCV}
           variant="ghost"
           size="sm"
           className="hover:bg-white/10 text-muted-foreground hover:text-foreground transition-all duration-300 group"
         >
-          <a 
-            href="/AHMED_MUBARAK_RESUME.pdf" 
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2"
-          >
-            <Download className="w-4 h-4 group-hover:translate-y-0.5 transition-transform" />
-            {t('hero.downloadCV')}
-          </a>
+          <Download className="w-4 h-4 group-hover:translate-y-0.5 transition-transform mr-2" />
+          {t('hero.downloadCV')}
         </Button>
 
         <Button
