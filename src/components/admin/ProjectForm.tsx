@@ -1,10 +1,10 @@
-
 import React, { useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
+import { Upload, X, Image } from 'lucide-react';
 
 interface Project {
   id: string;
@@ -38,6 +38,9 @@ const ProjectForm: React.FC<ProjectFormProps> = ({ project, onSave, onCancel }) 
     order_index: 0,
   });
   const [loading, setLoading] = useState(false);
+  const [uploading, setUploading] = useState(false);
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [imagePreview, setImagePreview] = useState<string>('');
   const { toast } = useToast();
 
   useEffect(() => {
@@ -53,20 +56,102 @@ const ProjectForm: React.FC<ProjectFormProps> = ({ project, onSave, onCancel }) 
         featured: project.featured,
         order_index: project.order_index,
       });
+      setImagePreview(project.image_url || '');
     }
   }, [project]);
+
+  const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    // Validate file type
+    if (!file.type.startsWith('image/')) {
+      toast({
+        variant: "destructive",
+        title: "Invalid file type",
+        description: "Please select an image file",
+      });
+      return;
+    }
+
+    // Validate file size (max 5MB)
+    if (file.size > 5 * 1024 * 1024) {
+      toast({
+        variant: "destructive",
+        title: "File too large",
+        description: "Please select an image smaller than 5MB",
+      });
+      return;
+    }
+
+    setImageFile(file);
+    
+    // Create preview
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      setImagePreview(e.target?.result as string);
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const uploadImage = async (file: File): Promise<string | null> => {
+    setUploading(true);
+    try {
+      const fileExt = file.name.split('.').pop();
+      const fileName = `${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`;
+      const filePath = `projects/${fileName}`;
+
+      const { error: uploadError } = await supabase.storage
+        .from('project-images')
+        .upload(filePath, file);
+
+      if (uploadError) throw uploadError;
+
+      const { data: { publicUrl } } = supabase.storage
+        .from('project-images')
+        .getPublicUrl(filePath);
+
+      return publicUrl;
+    } catch (error) {
+      console.error('Error uploading image:', error);
+      toast({
+        variant: "destructive",
+        title: "Upload failed",
+        description: "Failed to upload image",
+      });
+      return null;
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  const removeImage = () => {
+    setImageFile(null);
+    setImagePreview('');
+    setFormData(prev => ({ ...prev, image_url: '' }));
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
 
     try {
+      let imageUrl = formData.image_url;
+
+      // Upload new image if selected
+      if (imageFile) {
+        const uploadedUrl = await uploadImage(imageFile);
+        if (uploadedUrl) {
+          imageUrl = uploadedUrl;
+        }
+      }
+
       const tagsArray = formData.tags.split(',').map(tag => tag.trim()).filter(tag => tag);
       
       const projectData = {
         title: formData.title,
         description: formData.description,
-        image_url: formData.image_url || null,
+        image_url: imageUrl || null,
         tags: tagsArray,
         category: formData.category,
         live_url: formData.live_url || null,
@@ -155,8 +240,61 @@ const ProjectForm: React.FC<ProjectFormProps> = ({ project, onSave, onCancel }) 
             />
           </div>
 
+          {/* Image Upload Section */}
           <div className="space-y-2">
-            <label htmlFor="image_url" className="text-sm font-medium">Image URL</label>
+            <label className="text-sm font-medium">Project Image</label>
+            <div className="border-2 border-dashed border-gray-300 rounded-lg p-6">
+              {imagePreview ? (
+                <div className="relative">
+                  <img
+                    src={imagePreview}
+                    alt="Project preview"
+                    className="w-full h-48 object-cover rounded-lg"
+                  />
+                  <Button
+                    type="button"
+                    variant="destructive"
+                    size="sm"
+                    className="absolute top-2 right-2"
+                    onClick={removeImage}
+                  >
+                    <X size={16} />
+                  </Button>
+                </div>
+              ) : (
+                <div className="text-center">
+                  <Image className="mx-auto h-12 w-12 text-gray-400" />
+                  <div className="mt-4">
+                    <label htmlFor="image-upload" className="cursor-pointer">
+                      <span className="mt-2 block text-sm font-medium text-gray-900">
+                        Upload project image
+                      </span>
+                      <span className="text-xs text-gray-500">
+                        PNG, JPG, GIF up to 5MB
+                      </span>
+                    </label>
+                    <input
+                      id="image-upload"
+                      type="file"
+                      className="hidden"
+                      accept="image/*"
+                      onChange={handleImageUpload}
+                    />
+                  </div>
+                </div>
+              )}
+            </div>
+            {uploading && (
+              <div className="flex items-center space-x-2 text-sm text-blue-600">
+                <Upload className="animate-spin" size={16} />
+                <span>Uploading image...</span>
+              </div>
+            )}
+          </div>
+
+          {/* Manual URL Input as Fallback */}
+          <div className="space-y-2">
+            <label htmlFor="image_url" className="text-sm font-medium">Or enter image URL manually</label>
             <Input
               id="image_url"
               type="url"
@@ -226,7 +364,7 @@ const ProjectForm: React.FC<ProjectFormProps> = ({ project, onSave, onCancel }) 
           </div>
 
           <div className="flex space-x-4 pt-4">
-            <Button type="submit" disabled={loading}>
+            <Button type="submit" disabled={loading || uploading}>
               {loading ? 'Saving...' : (project ? 'Update Project' : 'Create Project')}
             </Button>
             <Button type="button" variant="outline" onClick={onCancel}>
