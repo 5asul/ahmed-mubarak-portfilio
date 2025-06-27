@@ -10,6 +10,7 @@ interface AvatarConfig {
   orbital_speed_2: number;
   show_floating_particles: boolean;
   show_animated_border: boolean;
+  avatar_url?: string;
 }
 
 const ProfessionalAvatar = () => {
@@ -35,7 +36,8 @@ const ProfessionalAvatar = () => {
             orbital_speed_1: data.orbital_speed_1,
             orbital_speed_2: data.orbital_speed_2,
             show_floating_particles: data.show_floating_particles,
-            show_animated_border: data.show_animated_border
+            show_animated_border: data.show_animated_border,
+            avatar_url: data.avatar_url
           });
         }
       } catch (error) {
@@ -66,7 +68,7 @@ const ProfessionalAvatar = () => {
         <div className="absolute inset-3">
           <Avatar className="w-full h-full shadow-inner">
             <AvatarImage 
-              src="/placeholder.svg" 
+              src={config.avatar_url || "/placeholder.svg"} 
               alt="Ahmed Mubarak"
               className="object-cover"
             />
