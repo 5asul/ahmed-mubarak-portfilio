@@ -1,10 +1,10 @@
+
 import React, { useEffect, useMemo, useState, useCallback } from 'react';
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { type Container, type ISourceOptions } from "@tsparticles/engine";
 import { loadSlim } from "@tsparticles/slim"; 
 import { Shield, Zap, Award, Rocket } from 'lucide-react';
 import ProfessionalAvatar from './ProfessionalAvatar';
-import FloatingProjectPreviews from './FloatingProjectPreviews';
 import AnimatedTechStack from './AnimatedTechStack';
 import ClientStats from './ClientStats';
 import EnhancedCallToAction from './EnhancedCallToAction';
@@ -117,9 +117,6 @@ const HeroSection = () => {
           className="absolute top-0 left-0 w-full h-full z-0"
         />
       )}
-
-      {/* Floating Project Previews */}
-      <FloatingProjectPreviews />
 
       {/* Animated Tech Stack */}
       <AnimatedTechStack />
