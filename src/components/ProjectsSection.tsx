@@ -7,6 +7,7 @@ import ProjectCard from './ProjectCard';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
+import { useTranslation } from 'react-i18next';
 
 interface Project {
   id: string;
@@ -26,6 +27,7 @@ const ProjectsSection = () => {
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('all');
   const { isAdmin } = useAuth();
+  const { t } = useTranslation();
 
   useEffect(() => {
     fetchProjects();
@@ -55,7 +57,7 @@ const ProjectsSection = () => {
     return (
       <section id="projects" className="bg-muted/30 dark:bg-muted/10 transition-colors duration-300">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 animate-fade-in-up">
-          <div className="text-center py-12 text-foreground">Loading projects...</div>
+          <div className="text-center py-12 text-foreground">{t('projects.loadingProjects')}</div>
         </div>
       </section>
     );
@@ -66,14 +68,14 @@ const ProjectsSection = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 animate-fade-in-up">
         <div className="flex flex-col items-center text-center mb-8 lg:mb-12">
           <div className="mb-6">
-            <h2 className="section-title">Featured Projects</h2>
+            <h2 className="section-title">{t('projects.title')}</h2>
             <p className="section-subtitle">
-              Here are some of my featured projects. Explore different categories below.
+              {t('projects.subtitle')}
             </p>
           </div>
           {isAdmin && (
             <Link to="/admin">
-              <Button variant="outline" className="mb-6">Manage Projects</Button>
+              <Button variant="outline" className="mb-6">{t('admin.projects')}</Button>
             </Link>
           )}
         </div>
@@ -82,10 +84,10 @@ const ProjectsSection = () => {
         <div className="flex justify-center mb-8 lg:mb-12">
           <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full max-w-2xl">
             <TabsList className="grid grid-cols-2 sm:grid-cols-4 w-full bg-muted/50 backdrop-blur-sm">
-              <TabsTrigger value="all" className="text-xs sm:text-sm">All</TabsTrigger>
-              <TabsTrigger value="websites" className="text-xs sm:text-sm">Websites</TabsTrigger>
-              <TabsTrigger value="backend" className="text-xs sm:text-sm">Backend</TabsTrigger>
-              <TabsTrigger value="mobile" className="text-xs sm:text-sm">Mobile</TabsTrigger>
+              <TabsTrigger value="all" className="text-xs sm:text-sm">{t('projects.all')}</TabsTrigger>
+              <TabsTrigger value="websites" className="text-xs sm:text-sm">{t('projects.websites')}</TabsTrigger>
+              <TabsTrigger value="backend" className="text-xs sm:text-sm">{t('projects.backend')}</TabsTrigger>
+              <TabsTrigger value="mobile" className="text-xs sm:text-sm">{t('projects.mobile')}</TabsTrigger>
             </TabsList>
           </Tabs>
         </div>
@@ -105,17 +107,17 @@ const ProjectsSection = () => {
                 to="/all-projects"
                 className="inline-flex items-center bg-sky-600 hover:bg-sky-700 dark:bg-sky-500 dark:hover:bg-sky-600 text-white font-semibold px-6 sm:px-8 py-3 rounded-lg shadow-lg transition-all duration-300 text-base sm:text-lg hover:scale-105 transform"
               >
-                View All Projects
+                {t('projects.viewAll')}
                 <ArrowRight className="ml-2" size={20} />
               </Link>
             </div>
           </>
         ) : (
           <div className="text-center py-12">
-            <p className="text-muted-foreground mb-4">No projects found.</p>
+            <p className="text-muted-foreground mb-4">{t('projects.noProjectsFound')}</p>
             {isAdmin && (
               <Link to="/admin">
-                <Button>Add Your First Project</Button>
+                <Button>{t('common.add')} {t('projects.title')}</Button>
               </Link>
             )}
           </div>

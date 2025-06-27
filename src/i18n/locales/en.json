@@ -19,6 +19,7 @@
     "subtitle3": "Tech Enthusiast",
     "description1": "I create exceptional digital experiences through modern web applications, AI-powered solutions, and scalable architectures.",
     "description2": "Ready to transform your vision into reality with cutting-edge technology and creative solutions.",
+    "viewMyWork": "View My Work",
     "viewPortfolio": "View My Portfolio",
     "hireMe": "Hire Me Now",
     "downloadCV": "Download CV",
@@ -76,7 +77,11 @@
   },
   "skills": {
     "title": "Skills & Technologies",
-    "subtitle": "Technologies I work with to bring ideas to life"
+    "subtitle": "Technologies I work with to bring ideas to life",
+    "problemSolving": "Problem-Solving",
+    "analyticalThinking": "Analytical Thinking",
+    "teamCollaboration": "Team Collaboration",
+    "adaptability": "Adaptability"
   },
   "contact": {
     "title": "Get In Touch",
