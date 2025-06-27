@@ -46,8 +46,21 @@ const Navbar = () => {
       dir={isRTL ? 'rtl' : 'ltr'}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className={`flex justify-between items-center py-4 ${isRTL ? '' : ''}`}>
-          {/* Logo */}
+        <div className="flex justify-between items-center py-4">
+          {/* Menu button and Theme/Language toggles - First position */}
+          <div className={`flex items-center ${isRTL ? 'space-x-reverse space-x-2' : 'space-x-2'}`}>
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="md:hidden p-2 text-foreground hover:text-sky-600 dark:hover:text-sky-400 transition-colors"
+              aria-label="Toggle menu"
+            >
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+            <ThemeToggle />
+            <LanguageToggle />
+          </div>
+
+          {/* Logo - Center */}
           <div className="flex-shrink-0">
             <button
               onClick={() => scrollToSection('home')}
@@ -57,7 +70,7 @@ const Navbar = () => {
             </button>
           </div>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Navigation - Last position */}
           <div className={`hidden md:flex items-center ${isRTL ? 'space-x-reverse space-x-8' : 'space-x-8'}`}>
             {navItems.map((item) => (
               <button
@@ -69,19 +82,6 @@ const Navbar = () => {
                 <span className={`absolute -bottom-1 ${isRTL ? 'right-0' : 'left-0'} w-0 h-0.5 bg-gradient-to-r from-sky-600 to-purple-600 transition-all duration-300 group-hover:w-full`}></span>
               </button>
             ))}
-          </div>
-
-          {/* Theme and Language toggles + Mobile menu button */}
-          <div className={`flex items-center ${isRTL ? 'space-x-reverse space-x-2' : 'space-x-2'}`}>
-            <ThemeToggle />
-            <LanguageToggle />
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className={`md:hidden p-2 text-foreground hover:text-sky-600 dark:hover:text-sky-400 transition-colors ${isRTL ? 'order-first' : ''}`}
-              aria-label="Toggle menu"
-            >
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
           </div>
         </div>
 
