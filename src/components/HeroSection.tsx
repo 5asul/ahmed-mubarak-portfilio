@@ -175,26 +175,26 @@ const HeroSection = () => {
           <EnhancedCallToAction />
         </div>
 
-        {/* Enhanced Trust Indicators with better visual hierarchy */}
+        {/* Enhanced Trust Indicators with professional developer icons */}
         <div className="mt-12 animate-fade-in-up" style={{ animationDelay: '1.5s' }}>
           <div className="inline-block px-6 py-4 bg-white/10 dark:bg-white/5 backdrop-blur-lg rounded-2xl border border-white/20 shadow-lg">
             <p className="text-sm font-medium text-muted-foreground mb-3">Trusted by clients worldwide</p>
-            <div className="flex justify-center items-center gap-6 text-sm">
-              <div className="flex items-center gap-2 text-yellow-600 dark:text-yellow-400">
-                <span className="text-base">⭐</span>
-                <span className="font-semibold">5.0 Rating</span>
+            <div className="flex justify-center items-center gap-4 sm:gap-6 text-xs sm:text-sm flex-wrap">
+              <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400">
+                <Shield className="w-4 h-4" />
+                <span className="font-semibold">Secure Code</span>
               </div>
-              <div className="flex items-center gap-2 text-green-600 dark:text-green-400">
-                <span className="text-base">🚀</span>
+              <div className="flex items-center gap-2 text-sky-600 dark:text-sky-400">
+                <Zap className="w-4 h-4" />
                 <span className="font-semibold">Fast Delivery</span>
               </div>
               <div className="flex items-center gap-2 text-purple-600 dark:text-purple-400">
-                <span className="text-base">💡</span>
-                <span className="font-semibold">Creative Solutions</span>
+                <Award className="w-4 h-4" />
+                <span className="font-semibold">Quality First</span>
               </div>
-              <div className="flex items-center gap-2 text-sky-600 dark:text-sky-400">
-                <span className="text-base">🔧</span>
-                <span className="font-semibold">Full Support</span>
+              <div className="flex items-center gap-2 text-orange-600 dark:text-orange-400">
+                <Rocket className="w-4 h-4" />
+                <span className="font-semibold">Scalable Solutions</span>
               </div>
             </div>
           </div>

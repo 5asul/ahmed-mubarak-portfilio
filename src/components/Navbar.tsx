@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, User, LogOut, Settings, Code, Download, Eye } from 'lucide-react';
+import { Menu, X, User, LogOut, Settings, Code, Download, Eye, Shield, Zap, Award, Rocket } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/ThemeToggle';
@@ -64,23 +64,25 @@ const Navbar = () => {
     <nav className="bg-background/95 backdrop-blur-sm shadow-lg border-b border-border fixed w-full z-50 top-0 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo Section */}
-          <div className="flex items-center flex-shrink-0">
-            <Link to="/" className="flex items-center space-x-3">
-              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-r from-sky-500 to-sky-600 rounded-lg flex items-center justify-center transition-colors duration-300">
+          {/* Logo Section - Improved responsive design */}
+          <div className="flex items-center flex-shrink-0 min-w-0">
+            <Link to="/" className="flex items-center space-x-2 sm:space-x-3">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-r from-sky-500 to-sky-600 rounded-lg flex items-center justify-center transition-colors duration-300 flex-shrink-0">
                 <Code className="text-white w-4 h-4 sm:w-6 sm:h-6" />
               </div>
-              <span className="text-lg sm:text-2xl font-bold bg-gradient-to-r from-slate-800 to-slate-600 dark:from-white dark:to-slate-300 bg-clip-text text-transparent hidden xs:block">
-                Ahmed Mubarak
-              </span>
-              <span className="text-lg font-bold bg-gradient-to-r from-slate-800 to-slate-600 dark:from-white dark:to-slate-300 bg-clip-text text-transparent xs:hidden">
-                AM
-              </span>
+              <div className="min-w-0">
+                <span className="text-base sm:text-lg lg:text-2xl font-bold bg-gradient-to-r from-slate-800 to-slate-600 dark:from-white dark:to-slate-300 bg-clip-text text-transparent hidden sm:block truncate">
+                  Ahmed Mubarak
+                </span>
+                <span className="text-lg font-bold bg-gradient-to-r from-slate-800 to-slate-600 dark:from-white dark:to-slate-300 bg-clip-text text-transparent sm:hidden">
+                  AM
+                </span>
+              </div>
             </Link>
           </div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-6">
+          {/* Desktop Navigation - Better responsive breakpoints */}
+          <div className="hidden lg:flex items-center space-x-4 xl:space-x-6">
             {navigation.map((item) => (
               <button
                 key={item.name}
@@ -89,14 +91,14 @@ const Navbar = () => {
                   isActive(item.href)
                     ? 'text-sky-600 dark:text-sky-400 border-b-2 border-sky-600 dark:border-sky-400'
                     : 'text-foreground hover:text-sky-600 dark:hover:text-sky-400'
-                } px-3 py-2 text-sm font-medium transition-colors duration-200`}
+                } px-2 xl:px-3 py-2 text-sm font-medium transition-colors duration-200 whitespace-nowrap`}
               >
                 {item.name}
               </button>
             ))}
             
-            {/* CV Actions */}
-            <div className="flex items-center space-x-2">
+            {/* CV Actions - Improved responsive spacing */}
+            <div className="flex items-center space-x-1 xl:space-x-2">
               <Button
                 onClick={handleViewCV}
                 variant="outline"
@@ -112,14 +114,14 @@ const Navbar = () => {
                 className="flex items-center space-x-1 bg-sky-600 hover:bg-sky-700 dark:bg-sky-500 dark:hover:bg-sky-600"
               >
                 <Download size={14} />
-                <span className="hidden xl:inline">Download CV</span>
+                <span className="hidden xl:inline">Download</span>
               </Button>
             </div>
             
             <ThemeToggle />
             
             {user && isAdmin && (
-              <div className="flex items-center space-x-2">
+              <div className="flex items-center space-x-1 xl:space-x-2">
                 <Link to="/admin">
                   <Button variant="outline" size="sm" className="flex items-center space-x-1">
                     <Settings size={14} />
@@ -139,12 +141,12 @@ const Navbar = () => {
             )}
           </div>
 
-          {/* Mobile Controls */}
-          <div className="lg:hidden flex items-center space-x-3">
+          {/* Mobile Controls - Better organized */}
+          <div className="lg:hidden flex items-center space-x-2">
             <ThemeToggle />
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-foreground hover:text-sky-600 dark:hover:text-sky-400 focus:outline-none transition-colors p-2"
+              className="text-foreground hover:text-sky-600 dark:hover:text-sky-400 focus:outline-none transition-colors p-2 rounded-md hover:bg-accent"
               aria-label="Toggle menu"
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -153,27 +155,30 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu - Enhanced organization and spacing */}
       {isMenuOpen && (
-        <div className="lg:hidden">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-background shadow-lg border-t border-border">
-            {navigation.map((item) => (
-              <button
-                key={item.name}
-                onClick={() => scrollToSection(item.href)}
-                className={`${
-                  isActive(item.href)
-                    ? 'text-sky-600 dark:text-sky-400 bg-sky-50 dark:bg-sky-950/30'
-                    : 'text-foreground hover:text-sky-600 dark:hover:text-sky-400 hover:bg-accent'
-                } block px-3 py-2 text-base font-medium w-full text-left transition-colors duration-200 rounded-md`}
-              >
-                {item.name}
-              </button>
-            ))}
+        <div className="lg:hidden border-t border-border">
+          <div className="px-4 pt-4 pb-3 space-y-3 bg-background/95 backdrop-blur-sm shadow-lg">
+            {/* Navigation Links */}
+            <div className="space-y-1">
+              {navigation.map((item) => (
+                <button
+                  key={item.name}
+                  onClick={() => scrollToSection(item.href)}
+                  className={`${
+                    isActive(item.href)
+                      ? 'text-sky-600 dark:text-sky-400 bg-sky-50 dark:bg-sky-950/30 border-l-4 border-sky-600 dark:border-sky-400'
+                      : 'text-foreground hover:text-sky-600 dark:hover:text-sky-400 hover:bg-accent border-l-4 border-transparent'
+                  } block px-4 py-3 text-base font-medium w-full text-left transition-colors duration-200 rounded-r-md`}
+                >
+                  {item.name}
+                </button>
+              ))}
+            </div>
             
-            {/* Mobile CV Actions */}
-            <div className="px-3 py-2 space-y-3 border-t border-border mt-4 pt-4">
-              <div className="grid grid-cols-2 gap-2">
+            {/* Mobile CV Actions - Better layout */}
+            <div className="pt-3 border-t border-border">
+              <div className="grid grid-cols-2 gap-3">
                 <Button
                   onClick={() => {
                     handleViewCV();
@@ -181,7 +186,7 @@ const Navbar = () => {
                   }}
                   variant="outline"
                   size="sm"
-                  className="flex items-center justify-center space-x-2 border-sky-200 dark:border-sky-800 hover:bg-sky-50 dark:hover:bg-sky-950/30 hover:text-sky-600 dark:hover:text-sky-400"
+                  className="flex items-center justify-center space-x-2 border-sky-200 dark:border-sky-800 hover:bg-sky-50 dark:hover:bg-sky-950/30 hover:text-sky-600 dark:hover:text-sky-400 py-3"
                 >
                   <Eye size={16} />
                   <span>View CV</span>
@@ -192,7 +197,7 @@ const Navbar = () => {
                     setIsMenuOpen(false);
                   }}
                   size="sm"
-                  className="flex items-center justify-center space-x-2 bg-sky-600 hover:bg-sky-700 dark:bg-sky-500 dark:hover:bg-sky-600"
+                  className="flex items-center justify-center space-x-2 bg-sky-600 hover:bg-sky-700 dark:bg-sky-500 dark:hover:bg-sky-600 py-3"
                 >
                   <Download size={16} />
                   <span>Download</span>
@@ -200,10 +205,11 @@ const Navbar = () => {
               </div>
             </div>
             
+            {/* Admin Section */}
             {user && isAdmin && (
-              <div className="px-3 py-2 space-y-2 border-t border-border">
+              <div className="pt-3 border-t border-border space-y-2">
                 <Link to="/admin" onClick={() => setIsMenuOpen(false)}>
-                  <Button variant="outline" size="sm" className="w-full flex items-center justify-center space-x-2">
+                  <Button variant="outline" size="sm" className="w-full flex items-center justify-center space-x-2 py-3">
                     <Settings size={16} />
                     <span>Admin Dashboard</span>
                   </Button>
@@ -215,7 +221,7 @@ const Navbar = () => {
                   }}
                   variant="ghost"
                   size="sm"
-                  className="w-full flex items-center justify-center space-x-2"
+                  className="w-full flex items-center justify-center space-x-2 py-3"
                 >
                   <LogOut size={16} />
                   <span>Logout</span>
