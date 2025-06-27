@@ -46,9 +46,9 @@ const Navbar = () => {
       dir={isRTL ? 'rtl' : 'ltr'}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center py-4">
-          {/* Menu button and Theme/Language toggles - First position */}
-          <div className={`flex items-center ${isRTL ? 'space-x-reverse space-x-2' : 'space-x-2'}`}>
+        <div className={`flex justify-between items-center py-4 ${isRTL ? 'flex-row-reverse' : ''}`}>
+          {/* Menu button and Theme/Language toggles - First position (right in RTL) */}
+          <div className={`flex items-center ${isRTL ? 'space-x-reverse space-x-2 flex-row-reverse' : 'space-x-2'}`}>
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="md:hidden p-2 text-foreground hover:text-sky-600 dark:hover:text-sky-400 transition-colors"
@@ -70,8 +70,8 @@ const Navbar = () => {
             </button>
           </div>
 
-          {/* Desktop Navigation - Last position */}
-          <div className={`hidden md:flex items-center ${isRTL ? 'space-x-reverse space-x-8' : 'space-x-8'}`}>
+          {/* Desktop Navigation - Last position (left in RTL) */}
+          <div className={`hidden md:flex items-center ${isRTL ? 'space-x-reverse space-x-8 flex-row-reverse' : 'space-x-8'}`}>
             {navItems.map((item) => (
               <button
                 key={item.id}
