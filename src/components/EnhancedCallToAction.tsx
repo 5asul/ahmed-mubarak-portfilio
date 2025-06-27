@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { ExternalLink, Mail, Download, Github, Linkedin } from 'lucide-react';
@@ -18,7 +17,7 @@ const EnhancedCallToAction = () => {
         >
           <a href="#projects" className="flex items-center gap-2">
             <ExternalLink className="w-5 h-5 group-hover:rotate-12 transition-transform" />
-            {t('hero.viewPortfolio')}
+            View My Work
           </a>
         </Button>
 
