@@ -46,7 +46,7 @@ const Navbar = () => {
       dir={isRTL ? 'rtl' : 'ltr'}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className={`flex justify-between items-center py-4 ${isRTL ? 'flex-row-reverse' : ''}`}>
+        <div className={`flex justify-between items-center py-4 ${isRTL ? '' : ''}`}>
           {/* Logo */}
           <div className="flex-shrink-0">
             <button
@@ -77,7 +77,7 @@ const Navbar = () => {
             <LanguageToggle />
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden p-2 text-foreground hover:text-sky-600 dark:hover:text-sky-400 transition-colors"
+              className={`md:hidden p-2 text-foreground hover:text-sky-600 dark:hover:text-sky-400 transition-colors ${isRTL ? 'order-first' : ''}`}
               aria-label="Toggle menu"
             >
               {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
